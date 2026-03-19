@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-PT" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScalpelAid - A tua caderneta cirúrgica digital</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <link href="../dist/output.css" rel="stylesheet">
+    
+    <style>
+        /* Modern UI micro-interactions */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(-1deg); }
+            50% { transform: translateY(-15px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(-1deg); }
+        }
+        .float-animation-reverse {
+            animation: float-rev 7s ease-in-out infinite;
+        }
+        @keyframes float-rev {
+            0% { transform: translateY(0px) rotate(1deg); }
+            50% { transform: translateY(-12px) rotate(-1deg); }
+            100% { transform: translateY(0px) rotate(1deg); }
+        }
+        body { font-family: 'Nunito', sans-serif; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased overflow-x-hidden selection:bg-primary-100 selection:text-primary-700">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 w-full glass-nav z-50 transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30 text-white font-black text-xl group-hover:scale-105 transition-transform">
+                    SA
+                </div>
+                <span class="text-2xl font-black tracking-tight text-slate-900 group-hover:text-primary-600 transition-colors">ScalpelAid</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 font-bold text-slate-500 text-[15px]">
+                <a href="#missao" class="hover:text-primary-600 transition-colors">A nossa missão</a>
+                <a href="#internos" class="hover:text-primary-600 transition-colors">Para internos</a>
+                <a href="#especialistas" class="hover:text-primary-600 transition-colors">Para especialistas</a>
+            </div>
+            <div class="hidden md:block">
+                <a href="#download" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-full font-bold text-sm shadow-md transition-all hover:scale-105 active:scale-95">
+                    Download App
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32">
+        <!-- Hero Section -->
+        <section id="missao" class="relative max-w-7xl mx-auto px-6 py-12 lg:py-24 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            <!-- Text Content -->
+            <div class="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left z-10">
+                <div class="inline-block px-4 py-2 bg-primary-50 border border-primary-100/50 text- प्राथमिक-700 text-primary-700 font-extrabold rounded-2xl mb-8 uppercase tracking-widest text-xs shadow-sm">
+                    A Caderneta Cirúrgica Digital
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-black leading-[1.05] text-slate-900 mb-8 tracking-tight">
+                    Gestão cirúrgica <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-indigo-500">
+                        sem complicações.
+                    </span>
+                </h1>
+                <p class="text-xl lg:text-2xl text-slate-500 mb-10 font-semibold leading-relaxed max-w-2xl">
+                    A ScalpelAid nasceu com o propósito de simplificar a gestão do currículo cirúrgico, transformando o registo das intervenções em algo prático, rápido e intuitivo.
+                </p>
+                <div class="flex flex-col xl:flex-row gap-4 mb-12 w-full max-w-md xl:max-w-none justify-center lg:justify-start">
+                    <a href="#download" class="flex items-center justify-center gap-3 px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-2xl font-bold text-lg shadow-xl shadow-primary-500/30 transition-all hover:-translate-y-1 active:scale-95">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                        App Store
+                    </a>
+                    <a href="#download" class="flex items-center justify-center gap-3 px-8 py-4 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl font-bold text-lg shadow-xl shadow-slate-900/20 transition-all hover:-translate-y-1 active:scale-95">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+                        Google Play
+                    </a>
+                </div>
+                <p class="text-slate-400 font-semibold leading-relaxed text-sm max-w-lg">
+                    A ferramenta indispensável no dia-a-dia do cirurgião que procura otimizar o seu tempo e ter estatísticas pessoais à distância de um clique.
+                </p>
+            </div>
+            
+            <!-- Hero Image -->
+            <div class="w-full lg:w-1/2 relative flex justify-center lg:justify-end mt-12 lg:mt-0">
+                <!-- Background decorative elements -->
+                <div class="absolute inset-0 bg-gradient-to-tr from-primary-100 to-white rounded-[4rem] transform rotate-6 scale-105 -z-10"></div>
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-indigo-100 rounded-full blur-3xl opacity-60"></div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-primary-200 rounded-full blur-3xl opacity-60"></div>
+                
+                <img src="./assets/1-full.png" alt="ScalpelAid App Hero" class="relative z-10 w-full max-w-sm lg:max-w-md drop-shadow-[0_30px_60px_rgba(37,99,235,0.25)] rounded-[2.5rem] float-animation object-cover">
+            </div>
+        </section>
+
+        <!-- Wave Separator 1 -->
+        <div class="w-full mt-10 md:mt-20 overflow-hidden line-height-0">
+            <svg viewBox="0 0 1440 120" class="w-full h-auto fill-slate-50 block" preserveAspectRatio="none">
+                <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
+            </svg>
+        </div>
+
+        <!-- Para Internos Section -->
+        <section id="internos" class="bg-slate-50 py-20 lg:py-32 relative overflow-hidden">
+            <!-- Background Decorations -->
+            <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-teal-50/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+
+            <div class="max-w-7xl mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-24 relative z-10">
+                <!-- Image -->
+                <div class="w-full lg:w-1/2 relative flex justify-center lg:justify-start">
+                    <div class="absolute inset-0 bg-gradient-to-bl from-teal-100 to-white rounded-[4rem] transform -rotate-3 scale-105 -z-10"></div>
+                    <img src="./assets/2-full.png" alt="Internato Cirúrgico" class="relative z-10 w-full max-w-sm lg:max-w-md drop-shadow-[0_30px_60px_rgba(20,184,166,0.2)] rounded-[2.5rem] float-animation-reverse object-cover">
+                </div>
+                
+                <!-- Text -->
+                <div class="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-teal-100 text-teal-600 mb-6 shadow-sm">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                    </div>
+                    <h2 class="text-4xl lg:text-5xl font-black text-slate-900 mb-6 leading-[1.15] tracking-tight">
+                        Registo pormenorizado, <br>
+                        <span class="text-teal-600">sem perder tempo.</span>
+                    </h2>
+                    <p class="text-xl text-slate-600 mb-8 leading-relaxed font-semibold">
+                        O percurso do internato cirúrgico é pautado por desafios diários, exigindo uma grande conciliação e organização pessoais. O registo pormenorizado das intervenções cirúrgicas é crucial para a correta avaliação curricular, assim como para a valorização final do internato, mas sabemos que devido ao volume de trabalho, esta é uma tarefa que muitas vezes é deixada em segundo plano.
+                    </p>
+                    <p class="text-lg text-slate-500 leading-relaxed font-medium">
+                        Ao registar as cirurgias na <strong class="text-slate-800">ScalpelAid</strong>, os internos podem facilmente consultar a sua casuística, manter o controlo total das suas metas e objetivos alinhados com a legislação em vigor e otimizar o seu tempo.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wave Separator 2 text-slate-50 to text-white -->
+        <div class="w-full bg-slate-50 line-height-0 overflow-hidden block">
+            <svg viewBox="0 0 1440 120" class="w-full h-auto fill-white block" preserveAspectRatio="none">
+                <path d="M0,32L80,48C160,64,320,96,480,101.3C640,107,800,85,960,69.3C1120,53,1280,43,1360,37.3L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
+            </svg>
+        </div>
+
+        <!-- Para Especialistas Section -->
+        <section id="especialistas" class="py-20 lg:py-32 relative overflow-hidden bg-white">
+            <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-50/60 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
+
+            <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 lg:gap-24 relative z-10">
+                <!-- Text -->
+                <div class="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-100 text-indigo-600 mb-6 shadow-sm">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h2 class="text-4xl lg:text-5xl font-black text-slate-900 mb-6 leading-[1.15] tracking-tight">
+                        Histórico cirúrgico <br>
+                        <span class="text-indigo-600">sempre atualizado.</span>
+                    </h2>
+                    <p class="text-xl text-slate-600 mb-8 leading-relaxed font-semibold">
+                        Compreendemos que, apesar do cirurgião especialista não estar abrangido por objetivos fixos, é também alvo de avaliações e carece de um registo atualizado das intervenções cirúrgicas por ele realizadas. 
+                    </p>
+                    <p class="text-lg text-slate-500 leading-relaxed font-medium">
+                        Ao registar as cirurgias, os especialistas podem facilmente consultar o seu histórico, verificar a sua casuística e manter o controlo total dos seus registos cirúrgicos através de análises visuais claras e imediatas.
+                    </p>
+                </div>
+
+                <!-- Image -->
+                <div class="w-full lg:w-1/2 relative flex justify-center lg:justify-end">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-indigo-100 to-white rounded-[4rem] transform rotate-3 scale-105 -z-10"></div>
+                    <img src="./assets/3-full.png" alt="Para Especialistas" class="relative z-10 w-full max-w-sm lg:max-w-md drop-shadow-[0_30px_60px_rgba(79,70,229,0.2)] rounded-[2.5rem] float-animation object-cover">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Bottom CTA -->
+        <section id="download" class="py-24 bg-slate-900 relative overflow-hidden mt-10">
+            <!-- Bubbles pattern -->
+            <div class="absolute inset-0 opacity-[0.03]">
+                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="bubbles" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                            <circle cx="20" cy="20" r="4" fill="white"/>
+                            <circle cx="80" cy="60" r="8" fill="white"/>
+                            <circle cx="40" cy="90" r="3" fill="white"/>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#bubbles)"/>
+                </svg>
+            </div>
+            
+            <div class="max-w-4xl mx-auto px-6 relative z-10 text-center text-white">
+                <h2 class="text-4xl lg:text-6xl font-black mb-8 tracking-tight">A otimização que o seu <br> currículo necessita.</h2>
+                <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-medium">
+                    Junte-se a vários cirurgiões que já gerem a sua casuística de forma eficiente. Disponível para iOS e Android.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                    <a href="#" class="flex items-center justify-center gap-3 px-8 py-4 bg-white text-slate-900 rounded-2xl font-bold text-lg shadow-2xl transition-all hover:-translate-y-1 hover:shadow-white/20 active:scale-95">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                        App Store
+                    </a>
+                    <a href="#" class="flex items-center justify-center gap-3 px-8 py-4 bg-transparent border-2 border-slate-700 hover:border-slate-500 hover:bg-slate-800 text-white rounded-2xl font-bold text-lg transition-all hover:-translate-y-1 active:scale-95">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+                        Google Play
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-slate-500 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+             <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+                <div class="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center text-white font-black text-sm">
+                    SA
+                </div>
+                <span class="text-lg font-bold text-slate-300 tracking-tight">ScalpelAid</span>
+            </div>
+            <div class="text-sm font-semibold">
+                &copy; 2026 ScalpelAid. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script for header blur logic -->
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('py-2', 'shadow-sm');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2', 'shadow-sm');
+            }
+        });
+    </script>
+</body>
+</html>

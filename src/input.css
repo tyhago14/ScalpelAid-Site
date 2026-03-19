@@ -2,12 +2,37 @@
 
 @theme {
   --font-sans: "Nunito", "Inter", sans-serif;
-  
+
   --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
+  --color-primary-100: #1B6FA8;
   --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
   --color-primary-700: #1d4ed8;
+
+  --color-orange: #F87F4B;
+  --color-orange-light: #fcdaccff;
+  --color-blue: #1B6FA8;
+  --color-blue-light: #5a9acbff;
+
+  /* light: {
+        background: "#EBF2F5",
+        surface: "#FFFFFF",
+        surfaceVariant: "#f1f6fa",
+        primary: "#F87F4B",
+        primary2: "#fcdaccff",
+        primaryVariant: "#1B6FA8",
+        primaryVariant2: "#5a9acbff",
+        secondary: "#38B000",
+        error: "#D62828",
+        textPrimary: "#3d4041ff",
+        textSecondary: "#9fa7ac",
+        border: "#CBD5E1",
+        shadow: "#014763bd",
+        bgPill2: "#cae8e1",
+        textPill2: "#527F74",
+        bgPill1: "#ffcdcd",
+        textPill1: "#db3b3b",
+    }, */
+
 }
 
 @layer base {

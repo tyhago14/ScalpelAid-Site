@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-PT" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade — ScalpelAid</title>
+    <meta name="description"
+        content="Política de Privacidade da ScalpelAid. Saiba como tratamos os seus dados pessoais de forma transparente e segura.">
+    <link rel="icon" type="image/x-icon" href="./assets/icon.png">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <link href="../docs/output.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Privacy content styles */
+        .prose h1 {
+            font-size: 2.25rem;
+            font-weight: 900;
+            color: #0f172a;
+            line-height: 1.15;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .prose h2 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .prose h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #334155;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .prose p {
+            color: #475569;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .prose strong {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        .prose a {
+            color: #f97316;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .prose a:hover {
+            color: #ea580c;
+            text-decoration: underline;
+        }
+
+        .prose hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 2rem 0;
+        }
+
+        .prose ul {
+            margin: 0.75rem 0 1rem 1.25rem;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .prose ul li {
+            margin-bottom: 0.4rem;
+            line-height: 1.7;
+        }
+
+        .prose table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.25rem 0;
+            font-size: 0.9rem;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        .prose thead {
+            background: #f8fafc;
+        }
+
+        .prose th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            font-weight: 800;
+            color: #1e293b;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .prose td {
+            padding: 0.65rem 1rem;
+            color: #475569;
+            font-weight: 500;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .prose tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .prose tbody tr:hover {
+            background: #fafafa;
+        }
+
+        /* Alert boxes */
+        .alert {
+            border-radius: 0.75rem;
+            padding: 1rem 1.25rem;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.7;
+            border-left: 4px solid;
+        }
+
+        .alert-important {
+            background: #fff7ed;
+            border-color: #f97316;
+            color: #7c2d12;
+        }
+
+        .alert-important strong {
+            color: #ea580c;
+        }
+
+        .alert-note {
+            background: #f0f9ff;
+            border-color: #38bdf8;
+            color: #0c4a6e;
+        }
+
+        .alert-note strong {
+            color: #0284c7;
+        }
+
+        .alert-tip {
+            background: #f0fdf4;
+            border-color: #4ade80;
+            color: #14532d;
+        }
+
+        .alert-tip strong {
+            color: #16a34a;
+        }
+
+        .alert-label {
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.35rem;
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-slate-800 antialiased overflow-x-hidden selection:bg-orange-100 selection:text-orange-700">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 w-full glass-nav z-50 transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="./assets/icon.png" alt="ScalpelAid Icon" class="w-10 h-10">
+                <span
+                    class="text-2xl font-black tracking-tight text-slate-900 group-hover:text-orange transition-colors">Scalpel
+                    <span class="text-orange">Aid</span></span>
+            </a>
+
+            <!-- Hamburger Button -->
+            <button id="mobile-menu-button" class="md:hidden p-2 text-slate-900 focus:outline-none z-50">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="hidden md:flex items-center gap-8 font-bold text-slate-500 text-[15px]">
+                <a href="index.html#missao" class="hover:text-orange transition-colors">A nossa missão</a>
+                <a href="index.html#internos" class="hover:text-orange transition-colors">Para internos</a>
+                <a href="index.html#especialistas" class="hover:text-orange transition-colors">Para especialistas</a>
+            </div>
+            <div class="hidden md:block">
+                <a href="index.html#download"
+                    class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-full font-bold text-sm shadow-md transition-all hover:scale-105 active:scale-95">
+                    Download App
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden z-40 bg-white backdrop-blur-xl flex flex-col items-center md:hidden transition-all duration-300 text-center">
+            <a href="index.html#missao"
+                class="text-2xl font-black text-slate-900 hover:text-orange transition-colors block pt-5 mobile-link">
+                A nossa missão
+            </a>
+            <a href="index.html#internos"
+                class="text-2xl font-black text-slate-900 hover:text-orange transition-colors block pt-5 mobile-link">
+                Para internos
+            </a>
+            <a href="index.html#especialistas"
+                class="text-2xl font-black text-slate-900 hover:text-orange transition-colors block pt-5 mobile-link">
+                Para especialistas
+            </a>
+            <a href="index.html#download"
+                class="p-4 px-8 bg-orange text-white rounded-2xl font-black text-xl shadow-xl shadow-orange-light/30 mx-auto w-fit block mt-5 mb-8 mobile-link">
+                Download App
+            </a>
+        </div>
+    </nav>
+
+    <main class="pt-28 pb-20">
+        <div class="max-w-5xl mx-auto px-6">
+
+            <!-- Privacy Policy Content -->
+            <article class="prose">
+
+                <h1>Política de Privacidade</h1>
+                <p class="text-sm text-slate-400 font-semibold mt-1 mb-6">Última atualização: 26 de março de 2026</p>
+
+                <p>Desenvolvemos a aplicação <strong>ScalpelAid</strong> como uma ferramenta de produtividade destinada
+                    a médicos internos e especialistas para organizar procedimentos cirúrgicos e gerir o seu currículo
+                    profissional. Esta Política de Privacidade descreve de forma transparente que dados são tratados,
+                    como são utilizados e quais os direitos do utilizador.</p>
+
+                <div class="alert alert-important">
+                    <span class="alert-label">⚠ Importante</span>
+                    A ScalpelAid <strong>não é uma aplicação de saúde nem de diagnóstico clínico</strong>. Não recolhe
+                    nem processa dados clínicos de doentes. Destina-se exclusivamente à organização profissional e
+                    curricular do médico enquanto utilizador.
+                </div>
+
+                <hr>
+
+                <h2>1. Responsável pelo Tratamento</h2>
+                <p>
+                    <strong>ScalpelAid</strong><br>
+                    Website: <a href="https://scalpelaid.pt">https://scalpelaid.pt</a><br>
+                    Contacto: <a href="mailto:geral@scalpelaid.pt">geral@scalpelaid.pt</a>
+                </p>
+
+                <hr>
+
+                <h2>2. Dados que Recolhemos e Tratamos</h2>
+                <p>A ScalpelAid foi desenhada segundo o princípio da <strong>minimização de dados</strong>. Todos os
+                    dados introduzidos pelo utilizador são armazenados exclusivamente no dispositivo (armazenamento
+                    local SQLite) e não são enviados para qualquer servidor externo.</p>
+
+                <h3>2.1 Dados de Perfil (introduzidos pelo utilizador)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dados</th>
+                            <th>Finalidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nome</td>
+                            <td>Identificação do perfil local</td>
+                        </tr>
+                        <tr>
+                            <td>Hospital(is) onde exerce</td>
+                            <td>Contexto curricular</td>
+                        </tr>
+                        <tr>
+                            <td>Especialidade cirúrgica</td>
+                            <td>Filtragem e organização de cirurgias</td>
+                        </tr>
+                        <tr>
+                            <td>Tipo de médico (Interno / Especialista)</td>
+                            <td>Personalização de funcionalidades</td>
+                        </tr>
+                        <tr>
+                            <td>Ano de internato ou grau profissional</td>
+                            <td>Organização curricular</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>2.2 Dados de Cirurgias (introduzidos pelo utilizador)</h3>
+                <p>O utilizador pode registar cirurgias com informações como: data, tipo de procedimento, papel
+                    desempenhado (operador, ajudante, etc.), comorbilidades, complicações (escala Clavien-Dindo),
+                    subgrupo e notas livres.</p>
+
+                <div class="alert alert-note">
+                    <span class="alert-label">📝 Nota</span>
+                    <strong>Nenhum destes dados identificam doentes.</strong> O registo é orientado ao percurso
+                    curricular do médico, sem qualquer campo de identificação de pacientes.
+                </div>
+
+                <h3>2.3 Dados Técnicos do Dispositivo</h3>
+                <p>A aplicação pode aceder a identificadores internos do dispositivo (como um ID de utilizador local
+                    gerado automaticamente) exclusivamente para manter a sessão ativa no dispositivo. Estes
+                    identificadores <strong>nunca abandonam o dispositivo</strong>.</p>
+
+                <hr>
+
+                <h2>3. Como Utilizamos os Dados</h2>
+                <p>Os dados recolhidos servem exclusivamente para:</p>
+                <ul>
+                    <li><strong>Apresentar e organizar</strong> o registo de cirurgias do utilizador na aplicação;</li>
+                    <li><strong>Personalizar</strong> a experiência com base no perfil profissional do utilizador;</li>
+                    <li><strong>Permitir a exportação</strong> do registo de cirurgias em formato de ficheiro, por
+                        iniciativa do próprio utilizador;</li>
+                    <li><strong>Calcular estatísticas curriculares</strong> localmente no dispositivo (ex.: totais por
+                        tipo de cirurgia).</li>
+                </ul>
+                <p><strong>Não utilizamos os dados para fins publicitários, de marketing, de análise comportamental ou
+                        de treino de modelos de inteligência artificial.</strong></p>
+
+                <hr>
+
+                <h2>4. Partilha de Dados com Terceiros</h2>
+                <p>A ScalpelAid <strong>não partilha, não vende, não aluga e não transmite</strong> os dados do
+                    utilizador a terceiros.</p>
+                <p>Não integramos serviços de análise de terceiros (ex.: Google Analytics, Firebase Analytics), serviços
+                    de publicidade ou redes sociais que possam aceder aos seus dados.</p>
+
+                <hr>
+
+                <h2>5. Armazenamento e Segurança</h2>
+                <ul>
+                    <li>Todos os dados são armazenados <strong>localmente no dispositivo</strong> através de uma base de
+                        dados SQLite.</li>
+                    <li>Não existe nenhum servidor ou base de dados remota associada à aplicação na versão atual.</li>
+                    <li>A segurança dos dados está dependente das proteções do próprio sistema operativo Android
+                        (encriptação do dispositivo, proteção por PIN/biometria, etc.).</li>
+                    <li>Em caso de perda, roubo ou destruição do dispositivo, os dados da aplicação não podem ser
+                        recuperados pela ScalpelAid, uma vez que não são guardados em nuvem.</li>
+                </ul>
+
+                <div class="alert alert-tip">
+                    <span class="alert-label">💡 Sugestão</span>
+                    Recomendamos que o utilizador ative a encriptação do dispositivo e utilize um método de desbloqueio
+                    seguro para proteger os seus dados.
+                </div>
+
+                <hr>
+
+                <h2>6. Funcionalidade de Exportação</h2>
+                <p>A aplicação permite ao utilizador <strong>exportar os seus dados de cirurgias</strong> para um
+                    ficheiro no dispositivo. Esta operação é inteiramente controlada pelo utilizador. A ScalpelAid não
+                    recebe, acede nem armazena qualquer cópia dos ficheiros exportados.</p>
+
+                <hr>
+
+                <h2>7. Eliminação de Dados</h2>
+                <p>O utilizador pode <strong>apagar todos os seus dados</strong> a qualquer momento através das
+                    Definições → "Apagar Conta". Esta ação é irreversível e elimina permanentemente todos os dados do
+                    perfil e registo de cirurgias armazenados no dispositivo.</p>
+                <p>A desinstalação da aplicação também resulta na eliminação de todos os dados locais.</p>
+
+                <hr>
+
+                <h2>8. Dados de Menores</h2>
+                <p>A ScalpelAid destina-se exclusivamente a profissionais e estudantes de medicina maiores de 18 anos.
+                    Não recolhemos intencionalmente dados de menores. Se tiver conhecimento de que um menor utilizou a
+                    aplicação, pedimos que nos contacte através do endereço indicado na secção 1.</p>
+
+                <hr>
+
+                <h2>9. Direitos do Utilizador</h2>
+                <p>Nos termos do Regulamento Geral sobre a Proteção de Dados (RGPD — Regulamento (UE) 2016/679), o
+                    utilizador tem os seguintes direitos:</p>
+                <ul>
+                    <li><strong>Direito de acesso</strong> — consultar os dados que a aplicação armazena (visíveis
+                        diretamente na aplicação);</li>
+                    <li><strong>Direito de retificação</strong> — corrigir dados incorretos através da funcionalidade
+                        "Editar Perfil";</li>
+                    <li><strong>Direito ao apagamento</strong> — eliminar todos os dados através da funcionalidade
+                        "Apagar Conta";</li>
+                    <li><strong>Direito à portabilidade</strong> — exportar os seus dados através da funcionalidade de
+                        exportação;</li>
+                    <li><strong>Direito de oposição</strong> — uma vez que os dados não são tratados para fins de
+                        marketing, este direito é aplicável por omissão.</li>
+                </ul>
+                <p>Para exercer qualquer um destes direitos ou para esclarecer dúvidas, contacte-nos em <a
+                        href="mailto:geral@scalpelaid.pt">geral@scalpelaid.pt</a>.</p>
+
+                <hr>
+
+                <h2>10. Permissões do Dispositivo</h2>
+                <p>A aplicação pode solicitar as seguintes permissões:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Permissão</th>
+                            <th>Motivo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Armazenamento (leitura/escrita)</td>
+                            <td>Necessário para exportar ficheiros de cirurgias para o dispositivo</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Não solicitamos permissões de câmara, microfone, localização, contactos, ou qualquer outra permissão
+                    não listada acima.</p>
+
+                <hr>
+
+                <h2>11. Alterações a Esta Política</h2>
+                <p>Reservamo-nos o direito de atualizar esta Política de Privacidade. Em caso de alterações materiais,
+                    notificaremos o utilizador através de uma notificação na aplicação ou através de uma atualização
+                    desta página. A data de "Última atualização" no topo do documento será sempre atualizada.</p>
+                <p>Recomendamos que o utilizador reveja esta política periodicamente.</p>
+
+                <hr>
+
+                <h2>12. Legislação Aplicável</h2>
+                <p>Esta política é regida pelo direito português e pelo Regulamento Geral sobre a Proteção de Dados
+                    (RGPD). Em caso de litígio, o utilizador pode apresentar queixa à <strong>Comissão Nacional de
+                        Proteção de Dados (CNPD)</strong> em <a href="https://www.cnpd.pt" target="_blank"
+                        rel="noopener">https://www.cnpd.pt</a>.</p>
+
+                <hr>
+
+                <h2>13. Contacto</h2>
+                <p>Para qualquer questão relacionada com esta Política de Privacidade:</p>
+                <p>
+                    <strong>ScalpelAid</strong><br>
+                    📧 <a href="mailto:geral@scalpelaid.pt">geral@scalpelaid.pt</a><br>
+                    🌐 <a href="https://scalpelaid.pt" target="_blank" rel="noopener">https://scalpelaid.pt</a>
+                </p>
+
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-slate-500 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+                <span class="text-lg font-bold text-slate-300 tracking-tight">ScalpelAid</span>
+            </div>
+            <a href="privacy.html" class="text-sm font-semibold hover:text-white transition-colors">
+                Política de Privacidade
+            </a>
+            <div class="text-sm font-semibold">
+                &copy; 2026 ScalpelAid. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script for header blur logic and mobile menu -->
+    <script>
+        const navbar = document.getElementById('navbar');
+        const menuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('py-2', 'shadow-sm');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2', 'shadow-sm');
+            }
+        });
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+            document.body.classList.toggle('overflow-hidden');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+    </script>
+</body>
+
+</html>

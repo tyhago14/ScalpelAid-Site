@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScalpelAid - Gestão cirúrgica sem complicações</title>
+    <title data-i18n="meta.title">ScalpelAid - Gestão cirúrgica sem complicações</title>
     <link rel="icon" type="image/x-icon" href="./assets/icon.png">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,8 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
     <link href="output.css" rel="stylesheet">
-    <!-- Hide reveal elements only when JS can show them again -->
-    <script>document.documentElement.classList.add('js');</script>
+    <!-- Hide reveal elements only when JS can show them again -->    <script>document.documentElement.classList.add('js');</script>
+    <!-- English translations and language selection -->
+    <script src="i18n.js"></script>
 
     <style>
         body {
@@ -773,10 +774,10 @@
                 <span></span><span></span><span></span>
             </button>
             <div class="hidden md:flex items-center gap-8 font-bold text-slate-500 text-[15px]">
-                <a href="#missao" class="nav-link hover:text-navy">A nossa missão</a>
-                <a href="#internos" class="nav-link hover:text-navy">Para internos</a>
-                <a href="#especialistas" class="nav-link hover:text-navy">Para especialistas</a>
-                <a href="#funcionalidades" class="nav-link hover:text-navy">Funcionalidades</a>
+                <a href="#missao" class="nav-link hover:text-navy" data-i18n="nav.mission">A nossa missão</a>
+                <a href="#internos" class="nav-link hover:text-navy" data-i18n="nav.trainees">Para internos</a>
+                <a href="#especialistas" class="nav-link hover:text-navy" data-i18n="nav.specialists">Para especialistas</a>
+                <a href="#funcionalidades" class="nav-link hover:text-navy" data-i18n="nav.features">Funcionalidades</a>
             </div>
             <div class="hidden md:block">
                 <a href="#download"
@@ -790,19 +791,19 @@
         <div id="mobile-menu" class="md:hidden">
             <div class="overflow-hidden flex flex-col items-center text-center">
                 <a href="#missao" style="--d:60ms"
-                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link">
+                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link" data-i18n="nav.mission">
                     A nossa missão
                 </a>
                 <a href="#internos" style="--d:120ms"
-                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link">
+                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link" data-i18n="nav.trainees">
                     Para internos
                 </a>
                 <a href="#especialistas" style="--d:180ms"
-                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link">
+                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link" data-i18n="nav.specialists">
                     Para especialistas
                 </a>
                 <a href="#funcionalidades" style="--d:240ms"
-                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link">
+                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link" data-i18n="nav.features">
                     Funcionalidades
                 </a>
                 <a href="#download" style="--d:300ms"
@@ -830,11 +831,11 @@
                 <!-- Text Content -->
                 <div class="w-full lg:w-[55%] flex flex-col items-center lg:items-start text-center lg:text-left z-10">
                     <h1 class="text-5xl sm:text-6xl xl:text-7xl font-black leading-[1.05] text-navy mb-8 tracking-tight">
-                        <span class="block" data-reveal>Gestão cirúrgica</span>
-                        <span class="block shimmer-text pb-2" data-reveal style="--d:150ms">sem complicações.</span>
+                        <span class="block" data-reveal data-i18n="hero.title1">Gestão cirúrgica</span>
+                        <span class="block shimmer-text pb-2" data-reveal style="--d:150ms" data-i18n="hero.title2">sem complicações.</span>
                     </h1>
                     <p class="text-xl lg:text-2xl text-slate-500 mb-10 font-semibold leading-relaxed max-w-2xl"
-                        data-reveal style="--d:300ms">
+                        data-reveal style="--d:300ms" data-i18n="hero.lead">
                         A ScalpelAid nasceu com o propósito de simplificar a gestão do currículo cirúrgico, transformando
                         o registo das intervenções em algo prático, rápido e intuitivo.
                     </p>
@@ -859,7 +860,7 @@
                         </a>
                     </div>
                     <p class="text-slate-400 font-semibold leading-relaxed text-sm max-w-lg" data-reveal
-                        style="--d:600ms">
+                        style="--d:600ms" data-i18n="hero.note">
                         A ferramenta indispensável no teu dia-a-dia de cirurgião para otimizares o teu tempo e teres
                         estatísticas pessoais à distância de um clique.
                     </p>
@@ -880,11 +881,11 @@
                                 <div class="stripe"></div>
                                 <div class="flex-1 p-3">
                                     <div class="flex items-center justify-between mb-1.5">
-                                        <span class="text-[13px] font-bold text-ink">Colecistectomia</span>
-                                        <span class="ui-pill">Principal</span>
+                                        <span class="text-[13px] font-bold text-ink" data-i18n="proc.cholecystectomy">Colecistectomia</span>
+                                        <span class="ui-pill" data-i18n="ui.lead">Principal</span>
                                     </div>
                                     <div class="flex justify-between text-[11px] font-semibold text-ink/70">
-                                        <span>Mulher - 54 anos</span>
+                                        <span data-i18n="patient.f54">Mulher - 54 anos</span>
                                         <span>21/10/2026</span>
                                     </div>
                                 </div>
@@ -903,7 +904,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                                 </svg>
-                                Nova Cirurgia
+                                <span data-i18n="ui.newSurgery">Nova Cirurgia</span>
                             </div>
                         </div>
                     </div>
@@ -941,13 +942,13 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                                                 </svg>
-                                                <span class="text-[22px] font-semibold text-blue">Olá Dra. Ana</span>
+                                                <span class="text-[22px] font-semibold text-blue" data-i18n="ui.hello">Olá Dra. Ana</span>
                                             </div>
 
                                             <!-- Resumo Semanal -->
                                             <div class="ui-card" data-reveal style="--d:850ms">
                                                 <div class="flex items-center justify-between mb-2.5">
-                                                    <span class="ui-title">Resumo Semanal</span>
+                                                    <span class="ui-title" data-i18n="ui.weeklySummary">Resumo Semanal</span>
                                                     <span class="ui-badge bg-orange/10 text-orange">
                                                         <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                             stroke-width="1.8" viewBox="0 0 24 24">
@@ -960,11 +961,11 @@
                                                     <div class="ui-tile text-center">
                                                         <div class="text-orange font-bold"><span
                                                                 class="text-[22px]">+<span data-count="3">3</span></span>
-                                                            <span class="text-[13px]">Cirurgias</span></div>
+                                                            <span class="text-[13px]" data-i18n="ui.surgeries">Cirurgias</span></div>
                                                         <div
                                                             class="flex justify-center gap-1.5 whitespace-nowrap text-[8px] font-semibold text-muted">
-                                                            <span>Principal: <b class="text-pill1-text">1</b></span>
-                                                            <span>Ajudante: <b class="text-pill2-text">2</b></span>
+                                                            <span><span data-i18n="ui.leadLabel">Principal:</span> <b class="text-pill1-text">1</b></span>
+                                                            <span><span data-i18n="ui.assistantLabel">Ajudante:</span> <b class="text-pill2-text">2</b></span>
                                                         </div>
                                                     </div>
                                                     <div class="ui-tile text-center">
@@ -977,7 +978,7 @@
                                                                     d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
                                                             </svg>
                                                         </div>
-                                                        <div class="text-[9px] font-semibold text-muted">Variação
+                                                        <div class="text-[9px] font-semibold text-muted" data-i18n="ui.weeklyChange">Variação
                                                             semanal</div>
                                                     </div>
                                                 </div>
@@ -986,7 +987,7 @@
                                             <!-- Resumo do Ano -->
                                             <div class="ui-card" data-reveal style="--d:1000ms">
                                                 <div class="flex items-center justify-between mb-1">
-                                                    <span class="ui-title">Resumo do Ano - 2026</span>
+                                                    <span class="ui-title" data-i18n="ui.yearSummary">Resumo do Ano - 2026</span>
                                                     <span class="ui-badge bg-orange/10 text-orange">
                                                         <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                             stroke-width="1.8" viewBox="0 0 24 24">
@@ -1017,37 +1018,37 @@
                                                                 class="absolute inset-0 flex items-center justify-center text-xl font-bold text-ink"
                                                                 data-count="48">48</span>
                                                         </div>
-                                                        <span class="text-[9px] font-bold text-ink mt-1">Total de
+                                                        <span class="text-[9px] font-bold text-ink mt-1" data-i18n="ui.totalSurgeries">Total de
                                                             Cirurgias</span>
                                                     </div>
                                                     <div class="flex flex-col items-center">
                                                         <div class="text-orange font-bold"><span class="text-2xl"
                                                                 data-count="1.2" data-decimals="1">1.2</span><span
-                                                                class="text-[9px] text-muted"> /cirurgias</span></div>
-                                                        <span class="text-[9px] font-bold text-ink mt-1">Média
+                                                                class="text-[9px] text-muted" data-i18n="ui.perWeek"> /cirurgias</span></div>
+                                                        <span class="text-[9px] font-bold text-ink mt-1" data-i18n="ui.weeklyAverage">Média
                                                             Semanal</span>
                                                     </div>
                                                 </div>
                                                 <div class="grid grid-cols-2 gap-2 mt-3">
                                                     <div class="ui-tile">
-                                                        <div class="text-[11px] font-bold text-ink">Cirurgião</div>
-                                                        <div class="ui-row"><span>Principal:</span><b>18</b></div>
-                                                        <div class="ui-row"><span>Ajudante:</span><b>30</b></div>
+                                                        <div class="text-[11px] font-bold text-ink" data-i18n="ui.surgeon">Cirurgião</div>
+                                                        <div class="ui-row"><span data-i18n="ui.leadLabel">Principal:</span><b>18</b></div>
+                                                        <div class="ui-row"><span data-i18n="ui.assistantLabel">Ajudante:</span><b>30</b></div>
                                                     </div>
                                                     <div class="ui-tile">
-                                                        <div class="text-[11px] font-bold text-ink">Bloco</div>
-                                                        <div class="ui-row"><span>Central:</span><b>41</b></div>
-                                                        <div class="ui-row"><span>Ambulatório:</span><b>7</b></div>
+                                                        <div class="text-[11px] font-bold text-ink" data-i18n="ui.theatre">Bloco</div>
+                                                        <div class="ui-row"><span data-i18n="ui.mainLabel">Central:</span><b>41</b></div>
+                                                        <div class="ui-row"><span data-i18n="ui.dayCaseLabel">Ambulatório:</span><b>7</b></div>
                                                     </div>
                                                     <div class="ui-tile">
-                                                        <div class="text-[11px] font-bold text-ink">Contexto</div>
-                                                        <div class="ui-row"><span>Eletivo:</span><b>36</b></div>
-                                                        <div class="ui-row"><span>Urgente:</span><b>12</b></div>
+                                                        <div class="text-[11px] font-bold text-ink" data-i18n="ui.setting">Contexto</div>
+                                                        <div class="ui-row"><span data-i18n="ui.electiveLabel">Eletivo:</span><b>36</b></div>
+                                                        <div class="ui-row"><span data-i18n="ui.emergencyLabel">Urgente:</span><b>12</b></div>
                                                     </div>
                                                     <div class="ui-tile">
-                                                        <div class="text-[11px] font-bold text-ink">Género</div>
-                                                        <div class="ui-row"><span>Homem:</span><b>27</b></div>
-                                                        <div class="ui-row"><span>Mulher:</span><b>21</b></div>
+                                                        <div class="text-[11px] font-bold text-ink" data-i18n="ui.sex">Género</div>
+                                                        <div class="ui-row"><span data-i18n="ui.maleLabel">Homem:</span><b>27</b></div>
+                                                        <div class="ui-row"><span data-i18n="ui.femaleLabel">Mulher:</span><b>21</b></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1055,7 +1056,7 @@
                                             <!-- Pequenas Cirurgias -->
                                             <div class="ui-card" data-reveal style="--d:1150ms">
                                                 <div class="flex items-center justify-between mb-2.5">
-                                                    <span class="ui-title">Pequenas Cirurgias - 2026</span>
+                                                    <span class="ui-title" data-i18n="ui.minorSummary">Pequenas Cirurgias - 2026</span>
                                                     <span class="ui-badge bg-blue/10 text-blue">
                                                         <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                             stroke-width="1.8" viewBox="0 0 24 24">
@@ -1069,13 +1070,13 @@
                                                         <div class="text-2xl font-bold text-blue py-1">9</div>
                                                         <div
                                                             class="flex justify-center gap-1.5 whitespace-nowrap text-[8px] font-semibold text-muted">
-                                                            <span>Principal: <b class="text-pill1-text">6</b></span>
-                                                            <span>Ajudante: <b class="text-pill2-text">3</b></span>
+                                                            <span><span data-i18n="ui.leadLabel">Principal:</span> <b class="text-pill1-text">6</b></span>
+                                                            <span><span data-i18n="ui.assistantLabel">Ajudante:</span> <b class="text-pill2-text">3</b></span>
                                                         </div>
                                                     </div>
                                                     <div class="ui-tile text-center">
                                                         <div class="text-2xl font-bold text-blue-light py-1">+2</div>
-                                                        <div class="text-[9px] font-semibold text-muted">Variação
+                                                        <div class="text-[9px] font-semibold text-muted" data-i18n="ui.weeklyChange">Variação
                                                             semanal</div>
                                                     </div>
                                                 </div>
@@ -1099,7 +1100,7 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                                                 </svg>
-                                                Cirurgias
+                                                <span data-i18n="ui.surgeries">Cirurgias</span>
                                             </div>
                                             <div>
                                                 <div class="fab">
@@ -1116,7 +1117,7 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                                                 </svg>
-                                                Agenda
+                                                <span data-i18n="ui.calendar">Agenda</span>
                                             </div>
                                             <div class="tab">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor"
@@ -1124,7 +1125,7 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28ZM15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                                 </svg>
-                                                Conta
+                                                <span data-i18n="ui.account">Conta</span>
                                             </div>
                                         </div>
                                     </div>
@@ -1157,7 +1158,7 @@
                         <div class="ui-card p-5! rounded-3xl! shadow-2xl! shadow-[#014763]/10 relative z-10"
                             data-reveal="left">
                             <div class="flex items-center justify-between mb-4">
-                                <span class="text-base font-bold text-ink">Progresso Atual</span>
+                                <span class="text-base font-bold text-ink" data-i18n="ui.currentProgress">Progresso Atual</span>
                                 <span class="ui-badge bg-orange/10 text-orange">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
                                         viewBox="0 0 24 24">
@@ -1183,15 +1184,15 @@
                                 <div class="ui-tile flex-1 text-center py-3!">
                                     <div class="text-orange font-bold"><span class="text-3xl"
                                             data-count="130">130</span><span class="text-base">/180</span></div>
-                                    <div class="text-xs font-semibold text-muted mt-1">Cirurgias</div>
+                                    <div class="text-xs font-semibold text-muted mt-1" data-i18n="ui.surgeries">Cirurgias</div>
                                 </div>
                             </div>
 
-                            <div class="text-base font-bold text-ink mb-3">Objetivos por Cirurgia</div>
+                            <div class="text-base font-bold text-ink mb-3" data-i18n="ui.targets">Objetivos por Cirurgia</div>
                             <div class="space-y-3.5">
                                 <div>
                                     <div class="flex justify-between text-sm font-semibold mb-1.5">
-                                        <span class="text-ink">Herniorrafias / Plastias</span>
+                                        <span class="text-ink" data-i18n="proc.hernias">Herniorrafias / Plastias</span>
                                         <span class="text-muted"><b class="text-orange">52</b>/75</span>
                                     </div>
                                     <div class="h-2 rounded-full bg-surface-variant overflow-hidden">
@@ -1200,7 +1201,7 @@
                                 </div>
                                 <div>
                                     <div class="flex justify-between text-sm font-semibold mb-1.5">
-                                        <span class="text-ink">Apendicectomias</span>
+                                        <span class="text-ink" data-i18n="proc.appendicectomies">Apendicectomias</span>
                                         <span class="text-muted"><b class="text-orange">41</b>/60</span>
                                     </div>
                                     <div class="h-2 rounded-full bg-surface-variant overflow-hidden">
@@ -1210,7 +1211,7 @@
                                 </div>
                                 <div>
                                     <div class="flex justify-between text-sm font-semibold mb-1.5">
-                                        <span class="text-ink flex items-center gap-1.5">Colecistectomias
+                                        <span class="text-ink flex items-center gap-1.5"><span data-i18n="proc.cholecystectomies">Colecistectomias</span>
                                             <svg class="w-4 h-4 text-success" fill="none" stroke="currentColor"
                                                 stroke-width="3" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -1225,7 +1226,7 @@
                                 </div>
                                 <div>
                                     <div class="flex justify-between text-sm font-semibold mb-1.5">
-                                        <span class="text-ink">Cirurgia Anal / Perianal</span>
+                                        <span class="text-ink" data-i18n="proc.anal">Cirurgia Anal / Perianal</span>
                                         <span class="text-muted"><b class="text-orange">12</b>/20</span>
                                     </div>
                                     <div class="h-2 rounded-full bg-surface-variant overflow-hidden">
@@ -1236,7 +1237,7 @@
                             </div>
                         </div>
 
-                        <img src="./assets/2-full.png" alt="Internato Cirúrgico" data-reveal="scale"
+                        <img src="./assets/2-full.png" alt="Internato Cirúrgico" data-i18n-alt="img.training" data-reveal="scale"
                             style="--d:400ms"
                             class="absolute bottom-0 right-2 sm:-bottom-6 sm:right-0 w-40 sm:w-48 z-20 pointer-events-none">
                     </div>
@@ -1254,20 +1255,20 @@
                         </svg>
                     </div>
                     <span class="text-sm font-black uppercase tracking-[0.2em] text-pill2-text mb-3" data-reveal
-                        style="--d:80ms">Para internos</span>
+                        style="--d:80ms" data-i18n="nav.trainees">Para internos</span>
                     <h2 class="text-4xl lg:text-5xl font-black text-navy mb-6 leading-[1.15] tracking-tight"
-                        data-reveal style="--d:150ms">
+                        data-reveal style="--d:150ms" data-i18n="trainees.title">
                         Registo pormenorizado, <br>
                         <span class="text-pill2-text">sem perderes tempo.</span>
                     </h2>
                     <p class="text-xl text-slate-600 mb-8 leading-relaxed font-semibold" data-reveal
-                        style="--d:250ms">
+                        style="--d:250ms" data-i18n="trainees.p1">
                         Sabemos que o percurso do teu internato cirúrgico é pautado por desafios diários, exigindo uma
                         grande conciliação e organização pessoais. O registo das tuas intervenções é crucial para a tua
                         correta avaliação curricular, mas sabemos que devido ao volume de trabalho, esta é uma tarefa
                         que muitas vezes deixas em segundo plano.
                     </p>
-                    <p class="text-lg text-slate-500 leading-relaxed font-medium" data-reveal style="--d:350ms">
+                    <p class="text-lg text-slate-500 leading-relaxed font-medium" data-reveal style="--d:350ms" data-i18n="trainees.p2">
                         Ao registares as cirurgias na <strong class="text-navy">ScalpelAid</strong>, podes facilmente
                         consultar a tua casuística, manter o controlo total das tuas metas e objetivos e otimizar o teu
                         tempo.
@@ -1302,18 +1303,18 @@
                         </svg>
                     </div>
                     <span class="text-sm font-black uppercase tracking-[0.2em] text-blue mb-3" data-reveal
-                        style="--d:80ms">Para especialistas</span>
+                        style="--d:80ms" data-i18n="nav.specialists">Para especialistas</span>
                     <h2 class="text-4xl lg:text-5xl font-black text-navy mb-6 leading-[1.15] tracking-tight"
-                        data-reveal style="--d:150ms">
+                        data-reveal style="--d:150ms" data-i18n="specialists.title">
                         Histórico cirúrgico <br>
                         <span class="text-blue">sempre atualizado.</span>
                     </h2>
                     <p class="text-xl text-slate-600 mb-8 leading-relaxed font-semibold" data-reveal
-                        style="--d:250ms">
+                        style="--d:250ms" data-i18n="specialists.p1">
                         Compreendemos que, mesmo como especialista, careces de um registo atualizado das tuas
                         intervenções cirúrgicas.
                     </p>
-                    <p class="text-lg text-slate-500 leading-relaxed font-medium" data-reveal style="--d:350ms">
+                    <p class="text-lg text-slate-500 leading-relaxed font-medium" data-reveal style="--d:350ms" data-i18n="specialists.p2">
                         Ao registares as tuas cirurgias, podes facilmente consultar o teu histórico, verificar a tua
                         casuística e manter o controlo total dos teus registos através de análises visuais claras e
                         imediatas.
@@ -1325,17 +1326,17 @@
                     <div class="relative w-full max-w-md sm:max-w-xl pb-44 sm:pb-0 sm:pl-44">
                         <div class="bg-app-bg rounded-3xl p-4 sm:p-5 shadow-2xl shadow-[#014763]/15 relative z-10"
                             data-reveal="right">
-                            <div class="text-xl font-semibold text-blue px-1 mb-3">As Minhas Cirurgias</div>
+                            <div class="text-xl font-semibold text-blue px-1 mb-3" data-i18n="ui.mySurgeries">As Minhas Cirurgias</div>
                             <div class="space-y-2.5">
                                 <div class="ui-item" data-reveal style="--d:200ms">
                                     <div class="stripe"></div>
                                     <div class="flex-1 p-3">
                                         <div class="flex items-center justify-between mb-1.5">
-                                            <span class="text-sm font-bold text-ink">Colectomia direita</span>
-                                            <span class="ui-pill">Principal</span>
+                                            <span class="text-sm font-bold text-ink" data-i18n="proc.rightHemicolectomy">Colectomia direita</span>
+                                            <span class="ui-pill" data-i18n="ui.lead">Principal</span>
                                         </div>
                                         <div class="flex justify-between text-xs font-semibold text-ink/70">
-                                            <span>Homem - 67 anos</span><span>20/10/2026</span>
+                                            <span data-i18n="patient.m67">Homem - 67 anos</span><span>20/10/2026</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1343,11 +1344,11 @@
                                     <div class="stripe"></div>
                                     <div class="flex-1 p-3">
                                         <div class="flex items-center justify-between mb-1.5">
-                                            <span class="text-sm font-bold text-ink">Tiroidectomia total</span>
-                                            <span class="ui-pill is-ajudante">Ajudante</span>
+                                            <span class="text-sm font-bold text-ink" data-i18n="proc.thyroidectomy">Tiroidectomia total</span>
+                                            <span class="ui-pill is-ajudante" data-i18n="ui.assistant">Ajudante</span>
                                         </div>
                                         <div class="flex justify-between text-xs font-semibold text-ink/70">
-                                            <span>Mulher - 45 anos</span><span>17/10/2026</span>
+                                            <span data-i18n="patient.f45">Mulher - 45 anos</span><span>17/10/2026</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1355,11 +1356,11 @@
                                     <div class="stripe is-small"></div>
                                     <div class="flex-1 p-3">
                                         <div class="flex items-center justify-between mb-1.5">
-                                            <span class="text-sm font-bold text-ink">Peq. Cirurgia</span>
-                                            <span class="ui-pill">Principal</span>
+                                            <span class="text-sm font-bold text-ink" data-i18n="ui.minorSurgery">Peq. Cirurgia</span>
+                                            <span class="ui-pill" data-i18n="ui.lead">Principal</span>
                                         </div>
                                         <div class="flex justify-between text-xs font-semibold text-ink/70">
-                                            <span>Homem - 32 anos</span><span>15/10/2026</span>
+                                            <span data-i18n="patient.m32">Homem - 32 anos</span><span>15/10/2026</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1368,7 +1369,7 @@
                             <!-- Monthly chart -->
                             <div class="ui-card mt-3 p-4!" data-reveal style="--d:550ms">
                                 <div class="flex items-center justify-between mb-3">
-                                    <span class="text-sm font-bold text-ink">Resumo do Ano - 2026</span>
+                                    <span class="text-sm font-bold text-ink" data-i18n="ui.yearSummary">Resumo do Ano - 2026</span>
                                     <span class="text-xs font-bold text-success flex items-center gap-1">
                                         <span>+<span data-count="24">24</span>%</span>
                                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -1382,7 +1383,7 @@
                                     <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
                                         <div class="col-fill w-full rounded-t-md bg-blue-light/60"
                                             style="height:45%;--d:700ms"></div>
-                                        <span class="text-[10px] font-bold text-muted">Mai</span>
+                                        <span class="text-[10px] font-bold text-muted" data-i18n="month.may">Mai</span>
                                     </div>
                                     <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
                                         <div class="col-fill w-full rounded-t-md bg-blue-light/60"
@@ -1397,23 +1398,23 @@
                                     <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
                                         <div class="col-fill w-full rounded-t-md bg-blue-light/60"
                                             style="height:55%;--d:940ms"></div>
-                                        <span class="text-[10px] font-bold text-muted">Ago</span>
+                                        <span class="text-[10px] font-bold text-muted" data-i18n="month.aug">Ago</span>
                                     </div>
                                     <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
                                         <div class="col-fill w-full rounded-t-md bg-blue-light/60"
                                             style="height:70%;--d:1020ms"></div>
-                                        <span class="text-[10px] font-bold text-muted">Set</span>
+                                        <span class="text-[10px] font-bold text-muted" data-i18n="month.sep">Set</span>
                                     </div>
                                     <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
                                         <div class="col-fill w-full rounded-t-md bg-blue"
                                             style="height:85%;--d:1100ms"></div>
-                                        <span class="text-[10px] font-bold text-blue">Out</span>
+                                        <span class="text-[10px] font-bold text-blue" data-i18n="month.oct">Out</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <img src="./assets/3-full.png" alt="Para Especialistas" data-reveal="scale"
+                        <img src="./assets/3-full.png" alt="Para Especialistas" data-i18n-alt="nav.specialists" data-reveal="scale"
                             style="--d:400ms"
                             class="absolute bottom-0 left-2 sm:-bottom-6 sm:left-0 w-40 sm:w-48 z-20 pointer-events-none">
                     </div>
@@ -1439,13 +1440,13 @@
                 <!-- Heading -->
                 <div class="max-w-3xl mx-auto text-center mb-14 lg:mb-20">
                     <span class="inline-block text-sm font-black uppercase tracking-[0.2em] text-orange mb-3"
-                        data-reveal>Funcionalidades</span>
+                        data-reveal data-i18n="nav.features">Funcionalidades</span>
                     <h2 class="text-4xl lg:text-5xl font-black text-navy mb-6 leading-[1.15] tracking-tight" data-reveal
-                        style="--d:100ms">
+                        style="--d:100ms" data-i18n="features.title">
                         Tudo o que precisas, <br>
                         <span class="shimmer-text">num só lugar.</span>
                     </h2>
-                    <p class="text-xl text-slate-500 leading-relaxed font-semibold" data-reveal style="--d:200ms">
+                    <p class="text-xl text-slate-500 leading-relaxed font-semibold" data-reveal style="--d:200ms" data-i18n="features.lead">
                         Para além do registo das cirurgias, a ScalpelAid acompanha-te no dia-a-dia com ferramentas
                         pensadas para organizar, partilhar e analisar a tua atividade cirúrgica.
                     </p>
@@ -1463,7 +1464,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                                 </svg>
-                                <span class="text-lg font-semibold text-blue">Agenda</span>
+                                <span class="text-lg font-semibold text-blue" data-i18n="ui.calendar">Agenda</span>
                             </div>
                             <div class="ui-card p-3!">
                                 <div class="flex items-center justify-between px-1 mb-2">
@@ -1472,14 +1473,14 @@
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M15.75 19.5 8.25 12l7.5-7.5" />
                                     </svg>
-                                    <span class="text-[13px] font-bold text-ink">Outubro 2026</span>
+                                    <span class="text-[13px] font-bold text-ink" data-i18n="ui.october2026">Outubro 2026</span>
                                     <svg class="w-4 h-4 text-orange" fill="none" stroke="currentColor"
                                         stroke-width="2.5" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                                     </svg>
                                 </div>
-                                <div class="cal-grid text-[9px] font-bold text-muted mb-1">
+                                <div class="cal-grid text-[9px] font-bold text-muted mb-1" data-i18n="ui.weekdays">
                                     <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
                                 </div>
                                 <!-- October 2026 starts on a Thursday -->
@@ -1515,8 +1516,8 @@
                                         d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                                 </svg>
                             </span>
-                            <h3 class="text-2xl font-black text-navy mb-3 tracking-tight">Calendário</h3>
-                            <p class="text-slate-500 font-semibold leading-relaxed">
+                            <h3 class="text-2xl font-black text-navy mb-3 tracking-tight" data-i18n="features.calendar.title">Calendário</h3>
+                            <p class="text-slate-500 font-semibold leading-relaxed" data-i18n="features.calendar.text">
                                 Consulta as tuas cirurgias dia a dia na Agenda. Os dias com intervenções ficam
                                 assinalados e basta um toque para reveres o que fizeste.
                             </p>
@@ -1534,9 +1535,9 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M15.75 19.5 8.25 12l7.5-7.5" />
                                 </svg>
-                                <span class="text-base font-bold text-ink">Exportar Cirurgias</span>
+                                <span class="text-base font-bold text-ink" data-i18n="ui.exportSurgeries">Exportar Cirurgias</span>
                             </div>
-                            <p class="text-[11px] font-semibold text-muted mb-3">Selecione o ano que pretende exportar
+                            <p class="text-[11px] font-semibold text-muted mb-3" data-i18n="ui.selectYear">Selecione o ano que pretende exportar
                             </p>
 
                             <div class="year-card">
@@ -1565,7 +1566,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                                         </svg>
-                                        Exportar
+                                        <span data-i18n="ui.export">Exportar</span>
                                     </span>
                                     <span class="state-busy spinner"></span>
                                     <span class="state-done">
@@ -1582,8 +1583,8 @@
                             <div class="export-file">
                                 <span class="w-9 h-9 rounded-lg bg-success text-white flex items-center justify-center text-[9px] font-black flex-none">XLSX</span>
                                 <div class="min-w-0">
-                                    <div class="text-[12px] font-bold text-ink truncate">exportacao_2026.xlsx</div>
-                                    <div class="text-[10px] font-semibold text-muted truncate">Cirurgias · Pequenas
+                                    <div class="text-[12px] font-bold text-ink truncate" data-i18n="ui.exportFile">exportacao_2026.xlsx</div>
+                                    <div class="text-[10px] font-semibold text-muted truncate" data-i18n="ui.exportSheets">Cirurgias · Pequenas
                                         Cirurgias</div>
                                 </div>
                             </div>
@@ -1604,20 +1605,20 @@
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                                         </svg>
-                                        Exportar
+                                        <span data-i18n="ui.export">Exportar</span>
                                     </span>
                                 </span>
                             </div>
 
                             <!-- Settings row: past surgeries -->
-                            <div class="text-[11px] font-bold text-muted mt-4 mb-1.5 px-1">Cirurgias</div>
+                            <div class="text-[11px] font-bold text-muted mt-4 mb-1.5 px-1" data-i18n="ui.surgeries">Cirurgias</div>
                             <div class="ui-card p-3! flex items-center gap-2.5">
                                 <svg class="w-4 h-4 text-blue flex-none" fill="none" stroke="currentColor"
                                     stroke-width="2" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                                 </svg>
-                                <span class="flex-1 text-[13px] font-semibold text-ink">Editar Cirurgias Antigas</span>
+                                <span class="flex-1 text-[13px] font-semibold text-ink" data-i18n="ui.editPast">Editar Cirurgias Antigas</span>
                                 <svg class="w-3.5 h-3.5 text-ink" fill="none" stroke="currentColor" stroke-width="3"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -1633,9 +1634,9 @@
                                         d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
                                 </svg>
                             </span>
-                            <h3 class="text-2xl font-black text-navy mb-3 tracking-tight">Importação e exportação das
+                            <h3 class="text-2xl font-black text-navy mb-3 tracking-tight" data-i18n="features.export.title">Importação e exportação das
                                 cirurgias</h3>
-                            <p class="text-slate-500 font-semibold leading-relaxed">
+                            <p class="text-slate-500 font-semibold leading-relaxed" data-i18n="features.export.text">
                                 Exporta o teu registo de cada ano para Excel, pronto a anexar ao currículo. Adiciona
                                 também as cirurgias que já realizaste no passado, sem teres de as inserir uma a uma.
                             </p>
@@ -1649,7 +1650,7 @@
                         <div class="feature-screen">
                             <div class="ui-card p-3.5!">
                                 <div class="flex items-center justify-between mb-3">
-                                    <span class="ui-title">Histórico de Cirurgias</span>
+                                    <span class="ui-title" data-i18n="ui.history">Histórico de Cirurgias</span>
                                     <span class="ui-badge bg-blue/10 text-blue">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8"
                                             viewBox="0 0 24 24">
@@ -1680,7 +1681,7 @@
                                         <div>
                                             <div class="flex justify-between text-[11px] font-bold mb-1">
                                                 <span class="flex items-center gap-1.5 text-ink"><i
-                                                        class="inline-block w-2 h-2 rounded-full bg-orange"></i>Principal</span>
+                                                        class="inline-block w-2 h-2 rounded-full bg-orange"></i><span data-i18n="ui.lead">Principal</span></span>
                                                 <span class="text-orange">38%</span>
                                             </div>
                                             <div class="h-1.5 rounded-full bg-surface-variant overflow-hidden">
@@ -1691,7 +1692,7 @@
                                         <div>
                                             <div class="flex justify-between text-[11px] font-bold mb-1">
                                                 <span class="flex items-center gap-1.5 text-ink"><i
-                                                        class="inline-block w-2 h-2 rounded-full bg-blue-light"></i>Ajudante</span>
+                                                        class="inline-block w-2 h-2 rounded-full bg-blue-light"></i><span data-i18n="ui.assistant">Ajudante</span></span>
                                                 <span class="text-blue-light">62%</span>
                                             </div>
                                             <div class="h-1.5 rounded-full bg-surface-variant overflow-hidden">
@@ -1702,37 +1703,37 @@
                                     </div>
                                 </div>
 
-                                <div class="text-[13px] font-bold text-ink mb-2">Ano 2026</div>
+                                <div class="text-[13px] font-bold text-ink mb-2" data-i18n="ui.year2026">Ano 2026</div>
                                 <div class="grid grid-cols-2 gap-2 mb-3">
                                     <div class="ui-tile text-center py-2.5!">
-                                        <div class="text-[10px] font-semibold text-muted">Cirurgias</div>
+                                        <div class="text-[10px] font-semibold text-muted" data-i18n="ui.surgeries">Cirurgias</div>
                                         <div class="text-xl font-bold text-orange" data-count="48">48</div>
-                                        <div class="text-[9px] font-semibold text-muted whitespace-nowrap">Principal: <b
-                                                class="text-pill1-text">18</b> Ajudante: <b
+                                        <div class="text-[9px] font-semibold text-muted whitespace-nowrap"><span data-i18n="ui.leadLabel">Principal:</span> <b
+                                                class="text-pill1-text">18</b> <span data-i18n="ui.assistantLabel">Ajudante:</span> <b
                                                 class="text-pill2-text">30</b></div>
                                     </div>
                                     <div class="ui-tile text-center py-2.5!">
-                                        <div class="text-[10px] font-semibold text-muted">Peq. Cirurgias</div>
+                                        <div class="text-[10px] font-semibold text-muted" data-i18n="ui.minorSurgeries">Peq. Cirurgias</div>
                                         <div class="text-xl font-bold text-blue-light" data-count="9">9</div>
-                                        <div class="text-[9px] font-semibold text-muted whitespace-nowrap">Principal: <b
-                                                class="text-pill1-text">6</b> Ajudante: <b
+                                        <div class="text-[9px] font-semibold text-muted whitespace-nowrap"><span data-i18n="ui.leadLabel">Principal:</span> <b
+                                                class="text-pill1-text">6</b> <span data-i18n="ui.assistantLabel">Ajudante:</span> <b
                                                 class="text-pill2-text">3</b></div>
                                     </div>
                                 </div>
-                                <div class="text-[13px] font-bold text-ink mb-2">Ano 2025</div>
+                                <div class="text-[13px] font-bold text-ink mb-2" data-i18n="ui.year2025">Ano 2025</div>
                                 <div class="grid grid-cols-2 gap-2">
                                     <div class="ui-tile text-center py-2.5!">
-                                        <div class="text-[10px] font-semibold text-muted">Cirurgias</div>
+                                        <div class="text-[10px] font-semibold text-muted" data-i18n="ui.surgeries">Cirurgias</div>
                                         <div class="text-xl font-bold text-orange" data-count="112">112</div>
-                                        <div class="text-[9px] font-semibold text-muted whitespace-nowrap">Principal: <b
-                                                class="text-pill1-text">41</b> Ajudante: <b
+                                        <div class="text-[9px] font-semibold text-muted whitespace-nowrap"><span data-i18n="ui.leadLabel">Principal:</span> <b
+                                                class="text-pill1-text">41</b> <span data-i18n="ui.assistantLabel">Ajudante:</span> <b
                                                 class="text-pill2-text">71</b></div>
                                     </div>
                                     <div class="ui-tile text-center py-2.5!">
-                                        <div class="text-[10px] font-semibold text-muted">Peq. Cirurgias</div>
+                                        <div class="text-[10px] font-semibold text-muted" data-i18n="ui.minorSurgeries">Peq. Cirurgias</div>
                                         <div class="text-xl font-bold text-blue-light" data-count="21">21</div>
-                                        <div class="text-[9px] font-semibold text-muted whitespace-nowrap">Principal: <b
-                                                class="text-pill1-text">15</b> Ajudante: <b
+                                        <div class="text-[9px] font-semibold text-muted whitespace-nowrap"><span data-i18n="ui.leadLabel">Principal:</span> <b
+                                                class="text-pill1-text">15</b> <span data-i18n="ui.assistantLabel">Ajudante:</span> <b
                                                 class="text-pill2-text">6</b></div>
                                     </div>
                                 </div>
@@ -1748,8 +1749,8 @@
                                         d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
                                 </svg>
                             </span>
-                            <h3 class="text-2xl font-black text-navy mb-3 tracking-tight">Estatísticas Avançadas</h3>
-                            <p class="text-slate-500 font-semibold leading-relaxed">
+                            <h3 class="text-2xl font-black text-navy mb-3 tracking-tight" data-i18n="features.stats.title">Estatísticas Avançadas</h3>
+                            <p class="text-slate-500 font-semibold leading-relaxed" data-i18n="features.stats.text">
                                 Gráficos claros sobre a tua casuística: o papel de cirurgião principal ou ajudante, a
                                 evolução ao longo dos anos e o histórico completo das tuas cirurgias.
                             </p>
@@ -1792,9 +1793,9 @@
                     <img src="./assets/icon.png" alt="ScalpelAid"
                         class="w-24 h-24 rounded-[1.75rem] glow-pulse float-animation">
                 </div>
-                <h2 class="text-4xl lg:text-6xl font-black mb-8 tracking-tight" data-reveal style="--d:120ms">A
+                <h2 class="text-4xl lg:text-6xl font-black mb-8 tracking-tight" data-reveal style="--d:120ms" data-i18n="cta.title">A
                     otimização que o teu <br class="hidden sm:block"> <span class="shimmer-text">currículo necessita.</span></h2>
-                <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-medium" data-reveal style="--d:240ms">
+                <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-medium" data-reveal style="--d:240ms" data-i18n="cta.text">
                     Junta-te a vários cirurgiões que já gerem a sua casuística de forma eficiente. Disponível para iOS e
                     Android.
                 </p>
@@ -1828,11 +1829,26 @@
             <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
                 <span class="text-lg font-bold text-slate-300 tracking-tight">ScalpelAid</span>
             </div>
-            <a href="privacy.html" class="text-sm font-semibold hover:text-white transition-colors">
+            <a href="privacy.html" class="text-sm font-semibold hover:text-white transition-colors" data-i18n="footer.privacy">
                 Política de Privacidade
             </a>
-            <div class="text-sm font-semibold">
-                &copy; 2026 ScalpelAid. Todos os direitos reservados.
+            <div class="flex flex-col items-center md:items-end gap-3">
+                <div class="text-sm font-semibold" data-i18n="footer.rights">
+                    &copy; 2026 ScalpelAid. Todos os direitos reservados.
+                </div>
+                <div class="flex items-center gap-2.5 text-xs font-bold tracking-wide" role="group"
+                    aria-label="Idioma / Language">
+                    <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" stroke-width="1.8"
+                        viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
+                    </svg>
+                    <button type="button" data-lang="pt" lang="pt-PT" title="Português (Portugal)" aria-pressed="true"
+                        class="transition-colors hover:text-white aria-pressed:text-orange">Portugal</button>
+                    <span class="w-px h-3 bg-slate-700" aria-hidden="true"></span>
+                    <button type="button" data-lang="en" lang="en-GB" title="English (UK)" aria-pressed="false"
+                        class="transition-colors hover:text-white aria-pressed:text-orange">English</button>
+                </div>
             </div>
         </div>
     </footer>
@@ -1954,34 +1970,45 @@
         const calendarDemo = document.getElementById('calendar-demo');
         const calEntry = document.getElementById('cal-entry');
         const calDays = calendarDemo.querySelectorAll('button.cal-day');
+        // [name pt, name en, lead surgeon?, male?, age, minor surgery?]
         const calSurgeries = {
-            2: ['Hernioplastia inguinal', 'Principal', 'Homem - 58 anos'],
-            6: ['Apendicectomia', 'Ajudante', 'Mulher - 23 anos'],
-            9: ['Peq. Cirurgia', 'Principal', 'Mulher - 41 anos', true],
-            13: ['Colecistectomia', 'Ajudante', 'Homem - 49 anos'],
-            15: ['Peq. Cirurgia', 'Principal', 'Homem - 32 anos', true],
-            17: ['Tiroidectomia total', 'Ajudante', 'Mulher - 45 anos'],
-            20: ['Colectomia direita', 'Principal', 'Homem - 67 anos'],
-            21: ['Colecistectomia', 'Principal', 'Mulher - 54 anos'],
+            2: ['Hernioplastia inguinal', 'Inguinal hernia repair', true, true, 58],
+            6: ['Apendicectomia', 'Appendicectomy', false, false, 23],
+            9: ['Peq. Cirurgia', 'Minor surgery', true, false, 41, true],
+            13: ['Colecistectomia', 'Cholecystectomy', false, true, 49],
+            15: ['Peq. Cirurgia', 'Minor surgery', true, true, 32, true],
+            17: ['Tiroidectomia total', 'Total thyroidectomy', false, false, 45],
+            20: ['Colectomia direita', 'Right hemicolectomy', true, true, 67],
+            21: ['Colecistectomia', 'Cholecystectomy', true, false, 54],
+        };
+        const calLabels = {
+            pt: { lead: 'Principal', assistant: 'Ajudante', male: 'Homem', female: 'Mulher', years: 'anos' },
+            en: { lead: 'Lead', assistant: 'Assistant', male: 'Male', female: 'Female', years: 'years' },
         };
         const calOrder = Object.keys(calSurgeries).map(Number);
         let calIndex = calOrder.indexOf(21);
         let calPausedUntil = 0;
 
+        function renderDay(day) {
+            const [namePt, nameEn, lead, male, age, small] = calSurgeries[day];
+            const t = calLabels[i18n.lang];
+            calEntry.querySelector('[data-field="name"]').textContent = i18n.lang === 'en' ? nameEn : namePt;
+            calEntry.querySelector('[data-field="role"]').textContent = lead ? t.lead : t.assistant;
+            calEntry.querySelector('[data-field="role"]').classList.toggle('is-ajudante', !lead);
+            calEntry.querySelector('[data-field="patient"]').textContent = `${male ? t.male : t.female} - ${age} ${t.years}`;
+            calEntry.querySelector('[data-field="date"]').textContent = `${String(day).padStart(2, '0')}/10/2026`;
+            calEntry.querySelector('.stripe').classList.toggle('is-small', !!small);
+        }
+
         function selectDay(day) {
-            const [name, role, patient, small] = calSurgeries[day];
             calDays.forEach(btn => btn.classList.toggle('is-selected', btn.dataset.day === String(day)));
             calEntry.classList.remove('is-in');
             setTimeout(() => {
-                calEntry.querySelector('[data-field="name"]').textContent = name;
-                calEntry.querySelector('[data-field="role"]').textContent = role;
-                calEntry.querySelector('[data-field="role"]').classList.toggle('is-ajudante', role === 'Ajudante');
-                calEntry.querySelector('[data-field="patient"]').textContent = patient;
-                calEntry.querySelector('[data-field="date"]').textContent = `${String(day).padStart(2, '0')}/10/2026`;
-                calEntry.querySelector('.stripe').classList.toggle('is-small', !!small);
+                renderDay(day);
                 calEntry.classList.add('is-in');
             }, reduceMotion ? 0 : 200);
         }
+        document.addEventListener('langchange', () => renderDay(calOrder[calIndex]));
 
         calDays.forEach(btn => btn.addEventListener('click', () => {
             const day = Number(btn.dataset.day);

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Privacidade — ScalpelAid</title>
+    <title data-i18n="pp.meta.title">Política de Privacidade — ScalpelAid</title>
     <meta name="description"
-        content="Política de Privacidade da ScalpelAid. Saiba como tratamos os seus dados pessoais de forma transparente e segura.">
+        content="Política de Privacidade da ScalpelAid. Saiba como tratamos os seus dados pessoais de forma transparente e segura." data-i18n-content="pp.meta.description">
     <link rel="icon" type="image/x-icon" href="./assets/icon.png">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,8 +14,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
     <link href="output.css" rel="stylesheet">
-    <!-- Hide reveal elements only when JS can show them again -->
-    <script>document.documentElement.classList.add('js');</script>
+    <!-- Hide reveal elements only when JS can show them again -->    <script>document.documentElement.classList.add('js');</script>
+    <!-- English translations and language selection -->
+    <script src="i18n.js"></script>
 
     <style>
         body {
@@ -430,10 +431,10 @@
                 <span></span><span></span><span></span>
             </button>
             <div class="hidden md:flex items-center gap-8 font-bold text-slate-500 text-[15px]">
-                <a href="index.html#missao" class="nav-link hover:text-navy">A nossa missão</a>
-                <a href="index.html#internos" class="nav-link hover:text-navy">Para internos</a>
-                <a href="index.html#especialistas" class="nav-link hover:text-navy">Para especialistas</a>
-                <a href="index.html#funcionalidades" class="nav-link hover:text-navy">Funcionalidades</a>
+                <a href="index.html#missao" class="nav-link hover:text-navy" data-i18n="nav.mission">A nossa missão</a>
+                <a href="index.html#internos" class="nav-link hover:text-navy" data-i18n="nav.trainees">Para internos</a>
+                <a href="index.html#especialistas" class="nav-link hover:text-navy" data-i18n="nav.specialists">Para especialistas</a>
+                <a href="index.html#funcionalidades" class="nav-link hover:text-navy" data-i18n="nav.features">Funcionalidades</a>
             </div>
             <div class="hidden md:block">
                 <a href="index.html#download"
@@ -447,19 +448,19 @@
         <div id="mobile-menu" class="md:hidden">
             <div class="overflow-hidden flex flex-col items-center text-center">
                 <a href="index.html#missao" style="--d:60ms"
-                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link">
+                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link" data-i18n="nav.mission">
                     A nossa missão
                 </a>
                 <a href="index.html#internos" style="--d:120ms"
-                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link">
+                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link" data-i18n="nav.trainees">
                     Para internos
                 </a>
                 <a href="index.html#especialistas" style="--d:180ms"
-                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link">
+                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link" data-i18n="nav.specialists">
                     Para especialistas
                 </a>
                 <a href="index.html#funcionalidades" style="--d:240ms"
-                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link">
+                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link" data-i18n="nav.features">
                     Funcionalidades
                 </a>
                 <a href="index.html#download" style="--d:300ms"
@@ -482,8 +483,8 @@
             <div class="max-w-6xl mx-auto px-6 pt-10 lg:pt-16 flex flex-col md:flex-row items-center gap-10">
                 <div class="flex-1 text-center md:text-left">
                     <h1 class="text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight text-navy mb-6">
-                        <span class="block" data-reveal>Política de</span>
-                        <span class="block shimmer-text pb-1" data-reveal style="--d:150ms">Privacidade</span>
+                        <span class="block" data-reveal data-i18n="pp.title1">Política de</span>
+                        <span class="block shimmer-text pb-1" data-reveal style="--d:150ms" data-i18n="pp.title2">Privacidade</span>
                     </h1>
                     <p class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-app-bg text-xs sm:text-sm font-bold whitespace-nowrap text-slate-500 mb-6"
                         data-reveal style="--d:250ms">
@@ -492,10 +493,10 @@
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                         </svg>
-                        Última atualização: 26 de março de 2026
+                        <span data-i18n="pp.updated">Última atualização: 26 de março de 2026</span>
                     </p>
                     <p class="text-lg lg:text-xl text-slate-500 font-semibold leading-relaxed max-w-2xl" data-reveal
-                        style="--d:350ms">
+                        style="--d:350ms" data-i18n="pp.intro">
                         Desenvolvemos a aplicação <strong class="text-navy">ScalpelAid</strong> como uma ferramenta de
                         produtividade destinada a médicos internos e especialistas para organizar procedimentos
                         cirúrgicos e gerir o seu currículo profissional. Esta Política de Privacidade descreve de forma
@@ -523,24 +524,24 @@
                 <!-- Table of contents -->
                 <aside class="hidden lg:block">
                     <nav id="toc" class="sticky top-28 space-y-0.5" data-reveal>
-                        <a href="#s1" class="toc-link">1. Responsável pelo Tratamento</a>
-                        <a href="#s2" class="toc-link">2. Dados que Recolhemos e Tratamos</a>
-                        <a href="#s3" class="toc-link">3. Como Utilizamos os Dados</a>
-                        <a href="#s4" class="toc-link">4. Partilha de Dados com Terceiros</a>
-                        <a href="#s5" class="toc-link">5. Armazenamento e Segurança</a>
-                        <a href="#s6" class="toc-link">6. Funcionalidade de Exportação</a>
-                        <a href="#s7" class="toc-link">7. Eliminação de Dados</a>
-                        <a href="#s8" class="toc-link">8. Dados de Menores</a>
-                        <a href="#s9" class="toc-link">9. Direitos do Utilizador</a>
-                        <a href="#s10" class="toc-link">10. Permissões do Dispositivo</a>
-                        <a href="#s11" class="toc-link">11. Alterações a Esta Política</a>
-                        <a href="#s12" class="toc-link">12. Legislação Aplicável</a>
-                        <a href="#s13" class="toc-link">13. Contacto</a>
+                        <a href="#s1" class="toc-link" data-i18n="pp.s1.title">1. Responsável pelo Tratamento</a>
+                        <a href="#s2" class="toc-link" data-i18n="pp.s2.title">2. Dados que Recolhemos e Tratamos</a>
+                        <a href="#s3" class="toc-link" data-i18n="pp.s3.title">3. Como Utilizamos os Dados</a>
+                        <a href="#s4" class="toc-link" data-i18n="pp.s4.title">4. Partilha de Dados com Terceiros</a>
+                        <a href="#s5" class="toc-link" data-i18n="pp.s5.title">5. Armazenamento e Segurança</a>
+                        <a href="#s6" class="toc-link" data-i18n="pp.s6.title">6. Funcionalidade de Exportação</a>
+                        <a href="#s7" class="toc-link" data-i18n="pp.s7.title">7. Eliminação de Dados</a>
+                        <a href="#s8" class="toc-link" data-i18n="pp.s8.title">8. Dados de Menores</a>
+                        <a href="#s9" class="toc-link" data-i18n="pp.s9.title">9. Direitos do Utilizador</a>
+                        <a href="#s10" class="toc-link" data-i18n="pp.s10.title">10. Permissões do Dispositivo</a>
+                        <a href="#s11" class="toc-link" data-i18n="pp.s11.title">11. Alterações a Esta Política</a>
+                        <a href="#s12" class="toc-link" data-i18n="pp.s12.title">12. Legislação Aplicável</a>
+                        <a href="#s13" class="toc-link" data-i18n="pp.s13.title">13. Contacto</a>
                     </nav>
                 </aside>
 
                 <article class="policy min-w-0">
-                    <div class="alert alert-important mt-0! mb-6! shadow-sm" data-reveal>
+                    <div class="alert alert-important mt-0! mb-6! shadow-sm" data-reveal data-i18n="pp.important">
                         <span class="alert-label">⚠ Importante</span>
                         A ScalpelAid <strong>não é uma aplicação de saúde nem de diagnóstico clínico</strong>. Não
                         recolhe nem processa dados clínicos de doentes. Destina-se exclusivamente à organização
@@ -548,8 +549,8 @@
                     </div>
 
                     <section id="s1" class="bg-white rounded-3xl p-6 sm:p-9 shadow-lg shadow-[#014763]/5" data-reveal>
-                        <h2>1. Responsável pelo Tratamento</h2>
-                        <p>
+                        <h2 data-i18n="pp.s1.title">1. Responsável pelo Tratamento</h2>
+                        <p data-i18n="pp.s1.p">
                             <strong>ScalpelAid</strong><br>
                             Website: <a href="https://scalpelaid.pt">https://scalpelaid.pt</a><br>
                             Contacto: <a href="mailto:geral@scalpelaid.pt">geral@scalpelaid.pt</a>
@@ -557,101 +558,101 @@
                     </section>
 
                     <section id="s2" class="bg-white rounded-3xl p-6 sm:p-9 shadow-lg shadow-[#014763]/5" data-reveal>
-                        <h2>2. Dados que Recolhemos e Tratamos</h2>
-                        <p>A ScalpelAid foi desenhada segundo o princípio da <strong>minimização de dados</strong>.
+                        <h2 data-i18n="pp.s2.title">2. Dados que Recolhemos e Tratamos</h2>
+                        <p data-i18n="pp.s2.p1">A ScalpelAid foi desenhada segundo o princípio da <strong>minimização de dados</strong>.
                             Todos os dados introduzidos pelo utilizador são armazenados exclusivamente no dispositivo
                             (armazenamento local SQLite) e não são enviados para qualquer servidor externo.</p>
 
-                        <h3>2.1 Dados de Perfil (introduzidos pelo utilizador)</h3>
+                        <h3 data-i18n="pp.s2.h1">2.1 Dados de Perfil (introduzidos pelo utilizador)</h3>
                         <div class="table-wrap">
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Dados</th>
-                                        <th>Finalidade</th>
+                                        <th data-i18n="pp.s2.th1">Dados</th>
+                                        <th data-i18n="pp.s2.th2">Finalidade</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Nome</td>
-                                        <td>Identificação do perfil local</td>
+                                        <td data-i18n="pp.s2.td1">Nome</td>
+                                        <td data-i18n="pp.s2.td2">Identificação do perfil local</td>
                                     </tr>
                                     <tr>
-                                        <td>Hospital(is) onde exerce</td>
-                                        <td>Contexto curricular</td>
+                                        <td data-i18n="pp.s2.td3">Hospital(is) onde exerce</td>
+                                        <td data-i18n="pp.s2.td4">Contexto curricular</td>
                                     </tr>
                                     <tr>
-                                        <td>Especialidade cirúrgica</td>
-                                        <td>Filtragem e organização de cirurgias</td>
+                                        <td data-i18n="pp.s2.td5">Especialidade cirúrgica</td>
+                                        <td data-i18n="pp.s2.td6">Filtragem e organização de cirurgias</td>
                                     </tr>
                                     <tr>
-                                        <td>Tipo de médico (Interno / Especialista)</td>
-                                        <td>Personalização de funcionalidades</td>
+                                        <td data-i18n="pp.s2.td7">Tipo de médico (Interno / Especialista)</td>
+                                        <td data-i18n="pp.s2.td8">Personalização de funcionalidades</td>
                                     </tr>
                                     <tr>
-                                        <td>Ano de internato ou grau profissional</td>
-                                        <td>Organização curricular</td>
+                                        <td data-i18n="pp.s2.td9">Ano de internato ou grau profissional</td>
+                                        <td data-i18n="pp.s2.td10">Organização curricular</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
 
-                        <h3>2.2 Dados de Cirurgias (introduzidos pelo utilizador)</h3>
-                        <p>O utilizador pode registar cirurgias com informações como: data, tipo de procedimento, papel
+                        <h3 data-i18n="pp.s2.h2">2.2 Dados de Cirurgias (introduzidos pelo utilizador)</h3>
+                        <p data-i18n="pp.s2.p2">O utilizador pode registar cirurgias com informações como: data, tipo de procedimento, papel
                             desempenhado (operador, ajudante, etc.), comorbilidades, complicações (escala
                             Clavien-Dindo), subgrupo e notas livres.</p>
 
-                        <div class="alert alert-note">
+                        <div class="alert alert-note" data-i18n="pp.s2.note">
                             <span class="alert-label">📝 Nota</span>
                             <strong>Nenhum destes dados identificam doentes.</strong> O registo é orientado ao percurso
                             curricular do médico, sem qualquer campo de identificação de pacientes.
                         </div>
 
-                        <h3>2.3 Dados Técnicos do Dispositivo</h3>
-                        <p>A aplicação pode aceder a identificadores internos do dispositivo (como um ID de utilizador
+                        <h3 data-i18n="pp.s2.h3">2.3 Dados Técnicos do Dispositivo</h3>
+                        <p data-i18n="pp.s2.p3">A aplicação pode aceder a identificadores internos do dispositivo (como um ID de utilizador
                             local gerado automaticamente) exclusivamente para manter a sessão ativa no dispositivo.
                             Estes identificadores <strong>nunca abandonam o dispositivo</strong>.</p>
                     </section>
 
                     <section id="s3" class="bg-white rounded-3xl p-6 sm:p-9 shadow-lg shadow-[#014763]/5" data-reveal>
-                        <h2>3. Como Utilizamos os Dados</h2>
-                        <p>Os dados recolhidos servem exclusivamente para:</p>
+                        <h2 data-i18n="pp.s3.title">3. Como Utilizamos os Dados</h2>
+                        <p data-i18n="pp.s3.p1">Os dados recolhidos servem exclusivamente para:</p>
                         <ul>
-                            <li><strong>Apresentar e organizar</strong> o registo de cirurgias do utilizador na
+                            <li data-i18n="pp.s3.li1"><strong>Apresentar e organizar</strong> o registo de cirurgias do utilizador na
                                 aplicação;</li>
-                            <li><strong>Personalizar</strong> a experiência com base no perfil profissional do
+                            <li data-i18n="pp.s3.li2"><strong>Personalizar</strong> a experiência com base no perfil profissional do
                                 utilizador;</li>
-                            <li><strong>Permitir a exportação</strong> do registo de cirurgias em formato de ficheiro,
+                            <li data-i18n="pp.s3.li3"><strong>Permitir a exportação</strong> do registo de cirurgias em formato de ficheiro,
                                 por iniciativa do próprio utilizador;</li>
-                            <li><strong>Calcular estatísticas curriculares</strong> localmente no dispositivo (ex.:
+                            <li data-i18n="pp.s3.li4"><strong>Calcular estatísticas curriculares</strong> localmente no dispositivo (ex.:
                                 totais por tipo de cirurgia).</li>
                         </ul>
-                        <p><strong>Não utilizamos os dados para fins publicitários, de marketing, de análise
+                        <p data-i18n="pp.s3.p2"><strong>Não utilizamos os dados para fins publicitários, de marketing, de análise
                                 comportamental ou de treino de modelos de inteligência artificial.</strong></p>
                     </section>
 
                     <section id="s4" class="bg-white rounded-3xl p-6 sm:p-9 shadow-lg shadow-[#014763]/5" data-reveal>
-                        <h2>4. Partilha de Dados com Terceiros</h2>
-                        <p>A ScalpelAid <strong>não partilha, não vende, não aluga e não transmite</strong> os dados do
+                        <h2 data-i18n="pp.s4.title">4. Partilha de Dados com Terceiros</h2>
+                        <p data-i18n="pp.s4.p1">A ScalpelAid <strong>não partilha, não vende, não aluga e não transmite</strong> os dados do
                             utilizador a terceiros.</p>
-                        <p>Não integramos serviços de análise de terceiros (ex.: Google Analytics, Firebase Analytics),
+                        <p data-i18n="pp.s4.p2">Não integramos serviços de análise de terceiros (ex.: Google Analytics, Firebase Analytics),
                             serviços de publicidade ou redes sociais que possam aceder aos seus dados.</p>
                     </section>
 
                     <section id="s5" class="bg-white rounded-3xl p-6 sm:p-9 shadow-lg shadow-[#014763]/5" data-reveal>
-                        <h2>5. Armazenamento e Segurança</h2>
+                        <h2 data-i18n="pp.s5.title">5. Armazenamento e Segurança</h2>
                         <ul>
-                            <li>Todos os dados são armazenados <strong>localmente no dispositivo</strong> através de uma
+                            <li data-i18n="pp.s5.li1">Todos os dados são armazenados <strong>localmente no dispositivo</strong> através de uma
                                 base de dados SQLite.</li>
-                            <li>Não existe nenhum servidor ou base de dados remota associada à aplicação na versão
+                            <li data-i18n="pp.s5.li2">Não existe nenhum servidor ou base de dados remota associada à aplicação na versão
                                 atual.</li>
-                            <li>A segurança dos dados está dependente das proteções do próprio sistema operativo Android
+                            <li data-i18n="pp.s5.li3">A segurança dos dados está dependente das proteções do próprio sistema operativo Android
                                 (encriptação do dispositivo, proteção por PIN/biometria, etc.).</li>
-                            <li>Em caso de perda, roubo ou destruição do dispositivo, os dados da aplicação não podem
+                            <li data-i18n="pp.s5.li4">Em caso de perda, roubo ou destruição do dispositivo, os dados da aplicação não podem
                                 ser recuperados pela ScalpelAid, uma vez que não são guardados em nuvem.</li>
                         </ul>
 
-                        <div class="alert alert-tip mb-0!">
+                        <div class="alert alert-tip mb-0!" data-i18n="pp.s5.tip">
                             <span class="alert-label">💡 Sugestão</span>
                             Recomendamos que o utilizador ative a encriptação do dispositivo e utilize um método de
                             desbloqueio seguro para proteger os seus dados.
@@ -659,83 +660,83 @@
                     </section>
 
                     <section id="s6" class="bg-white rounded-3xl p-6 sm:p-9 shadow-lg shadow-[#014763]/5" data-reveal>
-                        <h2>6. Funcionalidade de Exportação</h2>
-                        <p>A aplicação permite ao utilizador <strong>exportar os seus dados de cirurgias</strong> para
+                        <h2 data-i18n="pp.s6.title">6. Funcionalidade de Exportação</h2>
+                        <p data-i18n="pp.s6.p">A aplicação permite ao utilizador <strong>exportar os seus dados de cirurgias</strong> para
                             um ficheiro no dispositivo. Esta operação é inteiramente controlada pelo utilizador. A
                             ScalpelAid não recebe, acede nem armazena qualquer cópia dos ficheiros exportados.</p>
                     </section>
 
                     <section id="s7" class="bg-white rounded-3xl p-6 sm:p-9 shadow-lg shadow-[#014763]/5" data-reveal>
-                        <h2>7. Eliminação de Dados</h2>
-                        <p>O utilizador pode <strong>apagar todos os seus dados</strong> a qualquer momento através das
+                        <h2 data-i18n="pp.s7.title">7. Eliminação de Dados</h2>
+                        <p data-i18n="pp.s7.p1">O utilizador pode <strong>apagar todos os seus dados</strong> a qualquer momento através das
                             Definições → "Apagar Conta". Esta ação é irreversível e elimina permanentemente todos os
                             dados do perfil e registo de cirurgias armazenados no dispositivo.</p>
-                        <p>A desinstalação da aplicação também resulta na eliminação de todos os dados locais.</p>
+                        <p data-i18n="pp.s7.p2">A desinstalação da aplicação também resulta na eliminação de todos os dados locais.</p>
                     </section>
 
                     <section id="s8" class="bg-white rounded-3xl p-6 sm:p-9 shadow-lg shadow-[#014763]/5" data-reveal>
-                        <h2>8. Dados de Menores</h2>
-                        <p>A ScalpelAid destina-se exclusivamente a profissionais e estudantes de medicina maiores de 18
+                        <h2 data-i18n="pp.s8.title">8. Dados de Menores</h2>
+                        <p data-i18n="pp.s8.p">A ScalpelAid destina-se exclusivamente a profissionais e estudantes de medicina maiores de 18
                             anos. Não recolhemos intencionalmente dados de menores. Se tiver conhecimento de que um
                             menor utilizou a aplicação, pedimos que nos contacte através do endereço indicado na secção
                             1.</p>
                     </section>
 
                     <section id="s9" class="bg-white rounded-3xl p-6 sm:p-9 shadow-lg shadow-[#014763]/5" data-reveal>
-                        <h2>9. Direitos do Utilizador</h2>
-                        <p>Nos termos do Regulamento Geral sobre a Proteção de Dados (RGPD — Regulamento (UE)
+                        <h2 data-i18n="pp.s9.title">9. Direitos do Utilizador</h2>
+                        <p data-i18n="pp.s9.p1">Nos termos do Regulamento Geral sobre a Proteção de Dados (RGPD — Regulamento (UE)
                             2016/679), o utilizador tem os seguintes direitos:</p>
                         <ul>
-                            <li><strong>Direito de acesso</strong> — consultar os dados que a aplicação armazena
+                            <li data-i18n="pp.s9.li1"><strong>Direito de acesso</strong> — consultar os dados que a aplicação armazena
                                 (visíveis diretamente na aplicação);</li>
-                            <li><strong>Direito de retificação</strong> — corrigir dados incorretos através da
+                            <li data-i18n="pp.s9.li2"><strong>Direito de retificação</strong> — corrigir dados incorretos através da
                                 funcionalidade "Editar Perfil";</li>
-                            <li><strong>Direito ao apagamento</strong> — eliminar todos os dados através da
+                            <li data-i18n="pp.s9.li3"><strong>Direito ao apagamento</strong> — eliminar todos os dados através da
                                 funcionalidade "Apagar Conta";</li>
-                            <li><strong>Direito à portabilidade</strong> — exportar os seus dados através da
+                            <li data-i18n="pp.s9.li4"><strong>Direito à portabilidade</strong> — exportar os seus dados através da
                                 funcionalidade de exportação;</li>
-                            <li><strong>Direito de oposição</strong> — uma vez que os dados não são tratados para fins
+                            <li data-i18n="pp.s9.li5"><strong>Direito de oposição</strong> — uma vez que os dados não são tratados para fins
                                 de marketing, este direito é aplicável por omissão.</li>
                         </ul>
-                        <p>Para exercer qualquer um destes direitos ou para esclarecer dúvidas, contacte-nos em <a
+                        <p data-i18n="pp.s9.p2">Para exercer qualquer um destes direitos ou para esclarecer dúvidas, contacte-nos em <a
                                 href="mailto:geral@scalpelaid.pt">geral@scalpelaid.pt</a>.</p>
                     </section>
 
                     <section id="s10" class="bg-white rounded-3xl p-6 sm:p-9 shadow-lg shadow-[#014763]/5" data-reveal>
-                        <h2>10. Permissões do Dispositivo</h2>
-                        <p>A aplicação pode solicitar as seguintes permissões:</p>
+                        <h2 data-i18n="pp.s10.title">10. Permissões do Dispositivo</h2>
+                        <p data-i18n="pp.s10.p1">A aplicação pode solicitar as seguintes permissões:</p>
                         <div class="table-wrap">
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Permissão</th>
-                                        <th>Motivo</th>
+                                        <th data-i18n="pp.s10.th1">Permissão</th>
+                                        <th data-i18n="pp.s10.th2">Motivo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Armazenamento (leitura/escrita)</td>
-                                        <td>Necessário para exportar ficheiros de cirurgias para o dispositivo</td>
+                                        <td data-i18n="pp.s10.td1">Armazenamento (leitura/escrita)</td>
+                                        <td data-i18n="pp.s10.td2">Necessário para exportar ficheiros de cirurgias para o dispositivo</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <p>Não solicitamos permissões de câmara, microfone, localização, contactos, ou qualquer outra
+                        <p data-i18n="pp.s10.p2">Não solicitamos permissões de câmara, microfone, localização, contactos, ou qualquer outra
                             permissão não listada acima.</p>
                     </section>
 
                     <section id="s11" class="bg-white rounded-3xl p-6 sm:p-9 shadow-lg shadow-[#014763]/5" data-reveal>
-                        <h2>11. Alterações a Esta Política</h2>
-                        <p>Reservamo-nos o direito de atualizar esta Política de Privacidade. Em caso de alterações
+                        <h2 data-i18n="pp.s11.title">11. Alterações a Esta Política</h2>
+                        <p data-i18n="pp.s11.p1">Reservamo-nos o direito de atualizar esta Política de Privacidade. Em caso de alterações
                             materiais, notificaremos o utilizador através de uma notificação na aplicação ou através de
                             uma atualização desta página. A data de "Última atualização" no topo do documento será
                             sempre atualizada.</p>
-                        <p>Recomendamos que o utilizador reveja esta política periodicamente.</p>
+                        <p data-i18n="pp.s11.p2">Recomendamos que o utilizador reveja esta política periodicamente.</p>
                     </section>
 
                     <section id="s12" class="bg-white rounded-3xl p-6 sm:p-9 shadow-lg shadow-[#014763]/5" data-reveal>
-                        <h2>12. Legislação Aplicável</h2>
-                        <p>Esta política é regida pelo direito português e pelo Regulamento Geral sobre a Proteção de
+                        <h2 data-i18n="pp.s12.title">12. Legislação Aplicável</h2>
+                        <p data-i18n="pp.s12.p">Esta política é regida pelo direito português e pelo Regulamento Geral sobre a Proteção de
                             Dados (RGPD). Em caso de litígio, o utilizador pode apresentar queixa à <strong>Comissão
                                 Nacional de Proteção de Dados (CNPD)</strong> em <a href="https://www.cnpd.pt"
                                 target="_blank" rel="noopener">https://www.cnpd.pt</a>.</p>
@@ -745,8 +746,8 @@
                         data-reveal>
                         <div class="blob w-72 h-72 bg-orange/30 -top-24 -right-16"></div>
                         <div class="relative">
-                            <h2 class="text-white!">13. Contacto</h2>
-                            <p class="text-slate-300!">Para qualquer questão relacionada com esta Política de
+                            <h2 class="text-white!" data-i18n="pp.s13.title">13. Contacto</h2>
+                            <p class="text-slate-300!" data-i18n="pp.s13.p">Para qualquer questão relacionada com esta Política de
                                 Privacidade:</p>
                             <p class="text-slate-300!">
                                 <strong class="text-white!">ScalpelAid</strong><br>
@@ -767,11 +768,26 @@
             <div class="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
                 <span class="text-lg font-bold text-slate-300 tracking-tight">ScalpelAid</span>
             </div>
-            <a href="privacy.html" class="text-sm font-semibold hover:text-white transition-colors">
+            <a href="privacy.html" class="text-sm font-semibold hover:text-white transition-colors" data-i18n="footer.privacy">
                 Política de Privacidade
             </a>
-            <div class="text-sm font-semibold">
-                &copy; 2026 ScalpelAid. Todos os direitos reservados.
+            <div class="flex flex-col items-center md:items-end gap-3">
+                <div class="text-sm font-semibold" data-i18n="footer.rights">
+                    &copy; 2026 ScalpelAid. Todos os direitos reservados.
+                </div>
+                <div class="flex items-center gap-2.5 text-xs font-bold tracking-wide" role="group"
+                    aria-label="Idioma / Language">
+                    <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" stroke-width="1.8"
+                        viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
+                    </svg>
+                    <button type="button" data-lang="pt" lang="pt-PT" title="Português (Portugal)" aria-pressed="true"
+                        class="transition-colors hover:text-white aria-pressed:text-orange">Portugal</button>
+                    <span class="w-px h-3 bg-slate-700" aria-hidden="true"></span>
+                    <button type="button" data-lang="en" lang="en-GB" title="English (UK)" aria-pressed="false"
+                        class="transition-colors hover:text-white aria-pressed:text-orange">English</button>
+                </div>
             </div>
         </div>
     </footer>

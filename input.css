@@ -13,6 +13,20 @@
   --color-blue: #1B6FA8;
   --color-blue-light: #5a9acbff;
 
+  /* App palette (ScalpelAid constants/Colors.ts, light theme) */
+  --color-app-bg: #EBF2F5;
+  --color-surface-variant: #f1f6fa;
+  --color-success: #38B000;
+  --color-danger: #D62828;
+  --color-ink: #3d4041;
+  --color-muted: #9fa7ac;
+  --color-line: #CBD5E1;
+  --color-pill1-bg: #ffcdcd;
+  --color-pill1-text: #db3b3b;
+  --color-pill2-bg: #cae8e1;
+  --color-pill2-text: #527F74;
+  --color-navy: #0F172A;
+
   /* light: {
         background: "#EBF2F5",
         surface: "#FFFFFF",

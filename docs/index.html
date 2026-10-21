@@ -9,17 +9,158 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
     <link href="output.css" rel="stylesheet">
+    <!-- Hide reveal elements only when JS can show them again -->
+    <script>document.documentElement.classList.add('js');</script>
 
     <style>
-        /* Modern UI micro-interactions */
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        /* ---------- Navbar ---------- */
         .glass-nav {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(14px) saturate(160%);
+            -webkit-backdrop-filter: blur(14px) saturate(160%);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+        }
+
+        #scroll-progress {
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color .25s ease;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -6px;
+            height: 3px;
+            border-radius: 3px;
+            background: #F87F4B;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform .35s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.is-active::after {
+            transform: scaleX(1);
+        }
+
+        .nav-link.is-active {
+            color: #0F172A;
+        }
+
+        /* Hamburger morphs into an X */
+        .burger span {
+            display: block;
+            width: 24px;
+            height: 2.5px;
+            border-radius: 2px;
+            background: currentColor;
+            transition: transform .35s cubic-bezier(.2, .7, .2, 1), opacity .2s ease;
+        }
+
+        .burger span+span {
+            margin-top: 5.5px;
+        }
+
+        .menu-open .burger span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-open .burger span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-open .burger span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Mobile menu slides open (0fr -> 1fr grid trick) */
+        #mobile-menu {
+            display: grid;
+            grid-template-rows: 0fr;
+            opacity: 0;
+            transition: grid-template-rows .45s cubic-bezier(.2, .7, .2, 1), opacity .3s ease;
+        }
+
+        .menu-open #mobile-menu {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+
+        #mobile-menu .mobile-link {
+            transform: translateY(-10px);
+            opacity: 0;
+            transition: transform .4s ease, opacity .4s ease;
+            transition-delay: var(--d, 0ms);
+        }
+
+        .menu-open #mobile-menu .mobile-link {
+            transform: none;
+            opacity: 1;
+        }
+
+        /* ---------- Scroll reveal ---------- */
+        .js [data-reveal] {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity .9s ease, transform 1s cubic-bezier(.2, .7, .2, 1);
+            transition-delay: var(--d, 0ms);
+            will-change: opacity, transform;
+        }
+
+        .js [data-reveal="left"] {
+            transform: translateX(-48px);
+        }
+
+        .js [data-reveal="right"] {
+            transform: translateX(48px);
+        }
+
+        .js [data-reveal="scale"] {
+            transform: scale(.9);
+        }
+
+        .js [data-reveal="phone"] {
+            transform: perspective(1200px) translateY(80px) rotateX(18deg) rotateY(-10deg);
+            transition-duration: 1.2s, 1.4s;
+        }
+
+        .js [data-reveal].is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ---------- Ambient motion ---------- */
+        .shimmer-text {
+            background: linear-gradient(100deg, #F87F4B 0%, #F87F4B 35%, #fbb08f 50%, #F87F4B 65%, #F87F4B 100%);
+            background-size: 250% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 6s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 100% 0;
+            }
+
+            100% {
+                background-position: -150% 0;
+            }
         }
 
         .float-animation {
@@ -32,7 +173,7 @@
             }
 
             50% {
-                transform: translateY(-10px) rotate(1deg);
+                transform: translateY(-12px) rotate(1deg);
             }
 
             100% {
@@ -50,7 +191,7 @@
             }
 
             50% {
-                transform: translateY(-7px) rotate(-1deg);
+                transform: translateY(-10px) rotate(-1deg);
             }
 
             100% {
@@ -58,128 +199,946 @@
             }
         }
 
-        body {
-            font-family: 'Nunito', sans-serif;
+        .blob {
+            position: absolute;
+            border-radius: 9999px;
+            filter: blur(70px);
+            pointer-events: none;
+            animation: drift 18s ease-in-out infinite alternate;
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(40px, -30px) scale(1.1);
+            }
+
+            100% {
+                transform: translate(-30px, 20px) scale(.95);
+            }
+        }
+
+        .bubbles-drift {
+            animation: bubbles 40s linear infinite;
+        }
+
+        @keyframes bubbles {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-100px);
+            }
+        }
+
+        .glow-pulse {
+            animation: glow 3.2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(248, 127, 75, .45), 0 20px 50px -10px rgba(248, 127, 75, .5);
+            }
+
+            50% {
+                box-shadow: 0 0 0 18px rgba(248, 127, 75, 0), 0 20px 70px -10px rgba(248, 127, 75, .7);
+            }
+        }
+
+        .btn-glow {
+            transition: transform .3s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease, background-color .3s ease, border-color .3s ease;
+        }
+
+        .btn-glow:hover {
+            transform: translateY(-4px);
+        }
+
+        .btn-glow:active {
+            transform: scale(.97);
+        }
+
+        /* ---------- Phone mockup (recreates the app Home screen) ---------- */
+        .phone-tilt {
+            transform: perspective(1400px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+            transition: transform .6s cubic-bezier(.2, .7, .2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .phone {
+            width: 300px;
+            height: 620px;
+            border-radius: 52px;
+            padding: 11px;
+            background: linear-gradient(145deg, #2b2f36, #0b0d10 60%, #2b2f36);
+            box-shadow:
+                inset 0 0 0 2px #4b5058,
+                0 50px 100px -20px rgba(1, 71, 99, .35),
+                0 30px 60px -30px rgba(15, 23, 42, .55);
+        }
+
+        .phone-screen {
+            position: relative;
+            height: 100%;
+            border-radius: 42px;
+            overflow: hidden;
+            background: #EBF2F5;
+            color: #3d4041;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            width: 92px;
+            height: 26px;
+            margin-left: -46px;
+            border-radius: 20px;
+            background: #0b0d10;
+            z-index: 30;
+        }
+
+        .screen-scroll {
+            animation: screen-scroll 16s ease-in-out 3.5s infinite;
+        }
+
+        @keyframes screen-scroll {
+
+            0%,
+            18% {
+                transform: translateY(0);
+            }
+
+            42%,
+            68% {
+                transform: translateY(-170px);
+            }
+
+            92%,
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .ui-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 13px;
+            box-shadow: 0 4px 10px rgba(1, 71, 99, .08);
+        }
+
+        .ui-tile {
+            background: #f1f6fa;
+            border-radius: 14px;
+            padding: 8px 10px;
+        }
+
+        .ui-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #3d4041;
+        }
+
+        .ui-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 8px;
+        }
+
+        .ui-pill {
+            display: inline-block;
+            border-radius: 999px;
+            padding: 3px 8px;
+            font-size: 10px;
+            font-weight: 700;
+            background: #ffcdcd;
+            color: #db3b3b;
+        }
+
+        .ui-pill.is-ajudante {
+            background: #cae8e1;
+            color: #527F74;
+        }
+
+        .ui-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            line-height: 1.6;
+            color: #9fa7ac;
+            font-weight: 600;
+        }
+
+        .ui-row b {
+            color: #F87F4B;
+            font-weight: 800;
+        }
+
+        .tabbar {
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            bottom: 14px;
+            height: 58px;
+            border-radius: 16px;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .12);
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            align-items: center;
+            z-index: 20;
+        }
+
+        .tab {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            font-size: 9.5px;
+            font-weight: 600;
+            color: #9ca3af;
+        }
+
+        .tab.is-active {
+            color: #1B6FA8;
+        }
+
+        .fab {
+            width: 50px;
+            height: 50px;
+            margin: -30px auto 0;
+            border-radius: 999px;
+            background: #F87F4B;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 18px -4px rgba(248, 127, 75, .7);
+            animation: fab-pulse 2.8s ease-in-out infinite;
+        }
+
+        @keyframes fab-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        /* Donut / ring segments draw in when their card becomes visible */
+        .ring-seg {
+            transition: stroke-dashoffset 1.6s cubic-bezier(.2, .7, .2, 1);
+            transition-delay: var(--d, 300ms);
+        }
+
+        .js .ring-seg {
+            stroke-dashoffset: var(--len);
+        }
+
+        .js .is-visible .ring-seg {
+            stroke-dashoffset: 0;
+        }
+
+        /* Progress and chart bars grow when their card becomes visible */
+        .bar-fill {
+            transform-origin: left;
+            transition: transform 1.4s cubic-bezier(.2, .7, .2, 1);
+            transition-delay: var(--d, 300ms);
+        }
+
+        .col-fill {
+            transform-origin: bottom;
+            transition: transform 1.2s cubic-bezier(.2, .7, .2, 1);
+            transition-delay: var(--d, 300ms);
+        }
+
+        .js .bar-fill {
+            transform: scaleX(0);
+        }
+
+        .js .col-fill {
+            transform: scaleY(0);
+        }
+
+        .js .is-visible .bar-fill,
+        .js .is-visible .col-fill {
+            transform: none;
+        }
+
+        /* App list item (As Minhas Cirurgias) */
+        .ui-item {
+            display: flex;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(1, 71, 99, .1);
+        }
+
+        .ui-item .stripe {
+            width: 8px;
+            flex: none;
+            background: #F87F4B;
+        }
+
+        .ui-item .stripe.is-small {
+            background: #1B6FA8;
+        }
+
+        /* ---------- Feature cards (Funcionalidades) ---------- */
+        .feature-card {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 1.75rem;
+            padding: .75rem;
+            box-shadow: 0 20px 50px -20px rgba(1, 71, 99, .18);
+            transition: transform .4s cubic-bezier(.2, .7, .2, 1), box-shadow .4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 60px -20px rgba(1, 71, 99, .28);
+        }
+
+        .feature-screen {
+            position: relative;
+            height: 370px;
+            padding: 1rem;
+            border-radius: 1.25rem;
+            background: #EBF2F5;
+            color: #3d4041;
+            overflow: hidden;
+        }
+
+        .feature-screen::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 36px;
+            background: linear-gradient(rgba(235, 242, 245, 0), #EBF2F5);
+            pointer-events: none;
+        }
+
+        .feature-body {
+            padding: 1.5rem 1rem 1rem;
+        }
+
+        .feature-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            margin-bottom: 1rem;
+            border-radius: 1rem;
+        }
+
+        /* Calendar (react-native-calendars look) */
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            row-gap: 2px;
+            text-align: center;
+        }
+
+        .cal-day {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 27px;
+            height: 27px;
+            margin: 0 auto;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #3d4041;
+            transition: background-color .3s ease, color .3s ease, transform .3s ease, box-shadow .3s ease;
+        }
+
+        button.cal-day {
+            cursor: pointer;
+        }
+
+        button.cal-day:hover:not(.is-selected) {
+            background: #fff4ee;
+        }
+
+        .cal-day.is-marked::after {
+            content: "";
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            width: 4px;
+            height: 4px;
+            margin-left: -2px;
+            border-radius: 999px;
+            background: #F87F4B;
+        }
+
+        .cal-day.is-today {
+            color: #F87F4B;
+            font-weight: 800;
+        }
+
+        .cal-day.is-selected {
+            background: #F87F4B;
+            color: #fff;
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px -2px rgba(248, 127, 75, .6);
+        }
+
+        .cal-day.is-selected::after {
+            background: #fff;
+        }
+
+        .cal-entry {
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity .35s ease, transform .35s ease;
+        }
+
+        .cal-entry.is-in {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Export (Exportar Cirurgias screen) */
+        .year-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            border-radius: 16px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(1, 71, 99, .08);
+        }
+
+        .count-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            padding: 2px 7px;
+            border-radius: 99px;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .export-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 92px;
+            height: 34px;
+            padding: 0 14px;
+            border-radius: 999px;
+            background: #F87F4B;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            box-shadow: 0 3px 8px -2px rgba(248, 127, 75, .6);
+            transition: background-color .3s ease, box-shadow .3s ease, opacity .3s ease;
+        }
+
+        #export-btn {
+            cursor: pointer;
+        }
+
+        #export-btn .state-busy,
+        #export-btn .state-done,
+        .is-exporting #export-btn .state-idle,
+        .is-done #export-btn .state-idle {
+            display: none;
+        }
+
+        .is-exporting #export-btn {
+            opacity: .7;
+        }
+
+        .is-exporting #export-btn .state-busy,
+        .is-done #export-btn .state-done {
+            display: block;
+        }
+
+        .is-done #export-btn {
+            background: #38B000;
+            box-shadow: 0 3px 8px -2px rgba(56, 176, 0, .5);
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border-radius: 999px;
+            border: 2.5px solid rgba(255, 255, 255, .4);
+            border-top-color: #fff;
+            animation: spin .8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .export-file {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-height: 0;
+            margin-top: 0;
+            padding: 0 12px;
+            border-radius: 14px;
+            border: 1px dashed rgba(56, 176, 0, .5);
+            background: #fff;
+            opacity: 0;
+            overflow: hidden;
+            transform: translateY(-6px) scale(.97);
+            transition: max-height .45s ease, margin-top .45s ease, padding .45s ease, opacity .35s ease, transform .45s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .is-done .export-file {
+            max-height: 70px;
+            margin-top: 10px;
+            padding: 10px 12px;
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (max-width: 380px) {
+            .phone-scale {
+                transform: scale(.88);
+                transform-origin: top center;
+                margin-bottom: -70px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            .js [data-reveal] {
+                opacity: 1;
+                transform: none;
+            }
+
+            .js .ring-seg {
+                stroke-dashoffset: 0;
+            }
+
+            .js .bar-fill,
+            .js .col-fill {
+                transform: none;
+            }
         }
     </style>
 </head>
 
-<body class="bg-white text-slate-800 antialiased overflow-x-hidden selection:bg-primary-100 selection:text-orange">
+<body class="bg-white text-slate-800 antialiased overflow-x-hidden selection:bg-orange-light selection:text-orange">
 
     <!-- Navbar -->
     <nav id="navbar" class="fixed top-0 w-full glass-nav z-50 transition-all duration-300 py-4">
+        <div id="scroll-progress" class="absolute top-0 left-0 h-[3px] w-full bg-linear-to-r from-orange to-blue-light">
+        </div>
         <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
             <a href="#" class="flex items-center gap-3 group">
-                <img src="./assets/icon.png" alt="ScalpelAid Icon" class="w-10 h-10">
+                <img src="./assets/icon.png" alt="ScalpelAid Icon"
+                    class="w-10 h-10 transition-transform duration-500 group-hover:rotate-[-8deg] group-hover:scale-110">
                 <span
-                    class="text-2xl font-black tracking-tight text-slate-900 group-hover:text-orange transition-colors">Scalpel
-                    <span class="text-orange">Aid</span></span>
+                    class="text-2xl font-black tracking-tight text-navy group-hover:text-orange transition-colors">Scalpel<span
+                        class="text-orange">Aid</span></span>
             </a>
 
             <!-- Hamburger Button -->
-            <button id="mobile-menu-button" class="md:hidden p-2 text-slate-900 focus:outline-none z-50">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                        d="M4 6h16M4 12h16M4 18h16"></path>
-                    <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
+            <button id="mobile-menu-button" aria-label="Menu" aria-expanded="false"
+                class="burger md:hidden p-2 text-navy focus:outline-none z-50">
+                <span></span><span></span><span></span>
             </button>
             <div class="hidden md:flex items-center gap-8 font-bold text-slate-500 text-[15px]">
-                <a href="#missao" class="hover:text-orange transition-colors">A nossa missão</a>
-                <a href="#internos" class="hover:text-orange transition-colors">Para internos</a>
-                <a href="#especialistas" class="hover:text-orange transition-colors">Para especialistas</a>
+                <a href="#missao" class="nav-link hover:text-navy">A nossa missão</a>
+                <a href="#internos" class="nav-link hover:text-navy">Para internos</a>
+                <a href="#especialistas" class="nav-link hover:text-navy">Para especialistas</a>
+                <a href="#funcionalidades" class="nav-link hover:text-navy">Funcionalidades</a>
             </div>
             <div class="hidden md:block">
                 <a href="#download"
-                    class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-sm shadow-md transition-all hover:scale-105 active:scale-95">
+                    class="btn-glow inline-block px-5 py-2.5 bg-navy hover:bg-orange text-white rounded-full font-bold text-sm shadow-md hover:shadow-lg hover:shadow-orange/30">
                     Download App
                 </a>
             </div>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu"
-            class="hidden z-40 bg-white backdrop-blur-xl flex flex-col items-center md:hidden transition-all duration-300 text-center">
-            <a href="#missao"
-                class="text-2xl font-black text-slate-900 hover:text-orange transition-colors block pt-5 mobile-link">
-                A nossa missão
-            </a>
-            <a href="#internos"
-                class="text-2xl font-black text-slate-900 hover:text-orange transition-colors block pt-5 mobile-link">
-                Para internos
-            </a>
-            <a href="#especialistas"
-                class="text-2xl font-black text-slate-900 hover:text-orange transition-colors block pt-5 mobile-link">
-                Para especialistas
-            </a>
-            <a href="#download"
-                class="p-4 px-8 bg-orange text-white rounded-2xl font-black text-xl shadow-xl shadow-orange-light/30 mx-auto w-fit block mt-5 mb-8 mobile-link">
-                Download App
-            </a>
+        <div id="mobile-menu" class="md:hidden">
+            <div class="overflow-hidden flex flex-col items-center text-center">
+                <a href="#missao" style="--d:60ms"
+                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link">
+                    A nossa missão
+                </a>
+                <a href="#internos" style="--d:120ms"
+                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link">
+                    Para internos
+                </a>
+                <a href="#especialistas" style="--d:180ms"
+                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link">
+                    Para especialistas
+                </a>
+                <a href="#funcionalidades" style="--d:240ms"
+                    class="text-2xl font-black text-navy hover:text-orange transition-colors block pt-5 mobile-link">
+                    Funcionalidades
+                </a>
+                <a href="#download" style="--d:300ms"
+                    class="p-4 px-8 bg-orange text-white rounded-2xl font-black text-xl shadow-xl shadow-orange/30 mx-auto w-fit block mt-5 mb-8 mobile-link">
+                    Download App
+                </a>
+            </div>
         </div>
     </nav>
 
-    <main class="pt-32">
+    <main class="">
         <!-- Hero Section -->
-        <section id="missao"
-            class="relative max-w-7xl mx-auto px-6 py-12 lg:py-24 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            <!-- Text Content -->
-            <div class="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left z-10">
-                <h1 class="text-5xl lg:text-7xl font-black leading-[1.05] text-slate-900 mb-8 tracking-tight">
-                    Gestão cirúrgica <br>
-                    <span class="text-transparent bg-clip-text bg-linear-to-r from-orange to-orange-light">
-                        sem complicações.
-                    </span>
-                </h1>
-                <p class="text-xl lg:text-2xl text-slate-500 mb-10 font-semibold leading-relaxed max-w-2xl">
-                    A ScalpelAid nasceu com o propósito de simplificar a gestão do currículo cirúrgico, transformando o
-                    registo das intervenções em algo prático, rápido e intuitivo e permitindo a consulta instantânea das
-                    estatísticas pessoais.
-                </p>
-                <div
-                    class="flex flex-col xl:flex-row gap-4 mb-8 w-full max-w-md xl:max-w-none justify-center lg:justify-start">
-                    <a href="https://apps.apple.com/pt/app/scalpelaid/id6761445313" target="_blank"
-                        class="flex items-center justify-center gap-3 px-8 py-4 bg-orange hover:bg-orange text-white rounded-2xl font-bold text-lg shadow-xl shadow-orange-light/30 transition-all hover:-translate-y-1 active:scale-95">
-                        <svg class="w-6 h-6 fill-current" viewBox="0 0 384 512">
-                            <path
-                                d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
-                        </svg>
-                        App Store
-                    </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.tpmarques.ScalpelAid"
-                        class="flex items-center justify-center gap-3 px-8 py-4 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl font-bold text-lg shadow-xl shadow-slate-900/20 transition-all hover:-translate-y-1 active:scale-95">
-                        <svg class="w-6 h-6 fill-current" viewBox="0 0 512 512">
-                            <path
-                                d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z" />
-                        </svg>
-                        <div class="flex flex-col items-center gap-2">
-                            <div>
-                                Google Play
-                            </div>
-                        </div>
-                    </a>
+        <section id="missao" class="relative pt-28">
+            <!-- Ambient blobs -->
+            <div class="absolute inset-0 -z-10">
+                <div class="blob w-[420px] h-[420px] bg-orange/20 -top-20 right-[10%]"></div>
+                <div class="blob w-[380px] h-[380px] bg-blue-light/25 top-1/3 -left-24" style="animation-delay:-6s">
                 </div>
-                <p class="text-slate-400 font-semibold leading-relaxed text-sm max-w-lg">
-                    A ferramenta que simplifica a gestão do teu currículo cirúrgico
-                </p>
+                <div class="blob w-[300px] h-[300px] bg-pill2-bg/70 bottom-0 right-1/3" style="animation-delay:-12s">
+                </div>
             </div>
 
-            <!-- Hero Image -->
-            <div class="w-full lg:w-1/2 relative flex justify-center mt-12 lg:mt-0">
-                <!-- Background decorative elements -->
-                <div
-                    class="absolute inset-0 bg-linear-to-tr from-sky-200 to-white rounded-[4rem] transform rotate-6 scale-105 -z-10">
+            <div
+                class="max-w-7xl mx-auto px-6 py-12 lg:py-20 flex flex-col lg:flex-row items-center gap-16 lg:gap-12">
+                <!-- Text Content -->
+                <div class="w-full lg:w-[55%] flex flex-col items-center lg:items-start text-center lg:text-left z-10">
+                    <h1 class="text-5xl sm:text-6xl xl:text-7xl font-black leading-[1.05] text-navy mb-8 tracking-tight">
+                        <span class="block" data-reveal>Gestão cirúrgica</span>
+                        <span class="block shimmer-text pb-2" data-reveal style="--d:150ms">sem complicações.</span>
+                    </h1>
+                    <p class="text-xl lg:text-2xl text-slate-500 mb-10 font-semibold leading-relaxed max-w-2xl"
+                        data-reveal style="--d:300ms">
+                        A ScalpelAid nasceu com o propósito de simplificar a gestão do currículo cirúrgico, transformando
+                        o registo das intervenções em algo prático, rápido e intuitivo.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 mb-10 w-full max-w-md sm:max-w-none justify-center lg:justify-start"
+                        data-reveal style="--d:450ms">
+                        <a href="https://apps.apple.com/pt/app/scalpelaid/id6761445313" target="_blank"
+                            class="btn-glow flex items-center justify-center gap-3 px-8 py-4 bg-orange text-white rounded-2xl font-bold text-lg shadow-xl shadow-orange/30 hover:shadow-2xl hover:shadow-orange/40">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 384 512">
+                                <path
+                                    d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
+                            </svg>
+                            App Store
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.tpmarques.ScalpelAid"
+                            target="_blank"
+                            class="btn-glow flex items-center justify-center gap-3 px-8 py-4 bg-navy hover:bg-slate-800 text-white rounded-2xl font-bold text-lg shadow-xl shadow-navy/20 hover:shadow-2xl">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 512 512">
+                                <path
+                                    d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z" />
+                            </svg>
+                            Google Play
+                        </a>
+                    </div>
+                    <p class="text-slate-400 font-semibold leading-relaxed text-sm max-w-lg" data-reveal
+                        style="--d:600ms">
+                        A ferramenta indispensável no teu dia-a-dia de cirurgião para otimizares o teu tempo e teres
+                        estatísticas pessoais à distância de um clique.
+                    </p>
                 </div>
-                <img src="./assets/hero.png" alt="ScalpelAid App Hero"
-                    class="relative z-10 w-full max-w-sm lg:max-w-md object-cover float-animation">
+
+                <!-- Hero phone: recreation of the app Home screen -->
+                <div id="hero-stage" class="w-full lg:w-[45%] relative flex justify-center">
+                    <!-- Backdrop -->
+                    <div
+                        class="absolute top-1/2 left-1/2 w-[340px] h-[340px] sm:w-[460px] sm:h-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-to-tr from-orange-light via-white to-blue-light/30 -z-10">
+                    </div>
+
+                    <!-- Floating list item chip (As Minhas Cirurgias style) -->
+                    <div class="hidden sm:block lg:hidden xl:block absolute -left-4 xl:-left-24 top-[66%] z-20 w-56" data-reveal="left"
+                        style="--d:1100ms">
+                        <div class="float-animation-reverse">
+                            <div class="ui-item shadow-xl!">
+                                <div class="stripe"></div>
+                                <div class="flex-1 p-3">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <span class="text-[13px] font-bold text-ink">Colecistectomia</span>
+                                        <span class="ui-pill">Principal</span>
+                                    </div>
+                                    <div class="flex justify-between text-[11px] font-semibold text-ink/70">
+                                        <span>Mulher - 54 anos</span>
+                                        <span>21/10/2026</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating "Nova Cirurgia" button (app header style) -->
+                    <div class="hidden sm:block absolute right-0 xl:right-4 top-6 z-20" data-reveal="right"
+                        style="--d:1300ms">
+                        <div class="float-animation">
+                            <div
+                                class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm font-bold shadow-xl shadow-blue/30 bg-linear-to-br from-[steelblue] to-[lightskyblue]">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                </svg>
+                                Nova Cirurgia
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Waving mascot -->
+                    <img src="./assets/1-full.png" alt="" aria-hidden="true" data-reveal="right" style="--d:900ms"
+                        class="hidden sm:block absolute -right-2 xl:right-0 bottom-0 w-44 lg:w-52 z-20 pointer-events-none">
+
+                    <div class="phone-scale">
+                        <div data-reveal="phone" style="--d:200ms">
+                            <div class="phone-tilt" id="phone-tilt">
+                                <div class="phone">
+                                    <div class="phone-screen">
+                                        <div class="phone-notch"></div>
+                                        <!-- Status bar -->
+                                        <div
+                                            class="absolute top-0 inset-x-0 h-11 px-7 flex items-center justify-between text-[11px] font-bold text-ink bg-app-bg z-10">
+                                            <span>09:41</span>
+                                            <span class="flex items-center gap-1">
+                                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M2 18h3v3H2zM7 14h3v7H7zM12 10h3v11h-3zM17 6h3v15h-3z" />
+                                                </svg>
+                                                <span
+                                                    class="inline-block w-5 h-2.5 rounded-[3px] border border-ink/70 p-px"><span
+                                                        class="block h-full w-3/4 rounded-[1px] bg-ink"></span></span>
+                                            </span>
+                                        </div>
+
+                                        <div class="screen-scroll pt-12 px-3.5 pb-24 space-y-3">
+                                            <!-- Header -->
+                                            <div class="flex items-center gap-2 px-1 pt-1 pb-1" data-reveal
+                                                style="--d:700ms">
+                                                <svg class="w-6 h-6 text-blue" fill="none" stroke="currentColor"
+                                                    stroke-width="2" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                                                </svg>
+                                                <span class="text-[22px] font-semibold text-blue">Olá Dra. Ana</span>
+                                            </div>
+
+                                            <!-- Resumo Semanal -->
+                                            <div class="ui-card" data-reveal style="--d:850ms">
+                                                <div class="flex items-center justify-between mb-2.5">
+                                                    <span class="ui-title">Resumo Semanal</span>
+                                                    <span class="ui-badge bg-orange/10 text-orange">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                            stroke-width="1.8" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                <div class="grid grid-cols-2 gap-2.5">
+                                                    <div class="ui-tile text-center">
+                                                        <div class="text-orange font-bold"><span
+                                                                class="text-[22px]">+<span data-count="3">3</span></span>
+                                                            <span class="text-[13px]">Cirurgias</span></div>
+                                                        <div
+                                                            class="flex justify-center gap-1.5 whitespace-nowrap text-[8px] font-semibold text-muted">
+                                                            <span>Principal: <b class="text-pill1-text">1</b></span>
+                                                            <span>Ajudante: <b class="text-pill2-text">2</b></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ui-tile text-center">
+                                                        <div
+                                                            class="flex items-center justify-center gap-1 text-success font-bold text-[20px]">
+                                                            <span>+<span data-count="50">50</span>%</span>
+                                                            <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                                stroke-width="2.5" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+                                                            </svg>
+                                                        </div>
+                                                        <div class="text-[9px] font-semibold text-muted">Variação
+                                                            semanal</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Resumo do Ano -->
+                                            <div class="ui-card" data-reveal style="--d:1000ms">
+                                                <div class="flex items-center justify-between mb-1">
+                                                    <span class="ui-title">Resumo do Ano - 2026</span>
+                                                    <span class="ui-badge bg-orange/10 text-orange">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                            stroke-width="1.8" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                <div class="grid grid-cols-2 items-center">
+                                                    <div class="flex flex-col items-center">
+                                                        <div class="relative w-[84px] h-[84px]">
+                                                            <!-- Ajudante 30/48, Principal 18/48 (C = 2π·30 ≈ 188.5) -->
+                                                            <svg viewBox="0 0 80 80" class="w-full h-full">
+                                                                <circle cx="40" cy="40" r="30" fill="none"
+                                                                    stroke="#f1f6fa" stroke-width="9" />
+                                                                <circle class="ring-seg" cx="40" cy="40" r="30"
+                                                                    fill="none" stroke="#86ada3" stroke-width="9"
+                                                                    stroke-dasharray="117.8 188.5"
+                                                                    style="--len:117.8;--d:1300ms"
+                                                                    transform="rotate(-90 40 40)" />
+                                                                <circle class="ring-seg" cx="40" cy="40" r="30"
+                                                                    fill="none" stroke="#e98686" stroke-width="9"
+                                                                    stroke-dasharray="70.7 188.5"
+                                                                    style="--len:70.7;--d:2300ms"
+                                                                    transform="rotate(135 40 40)" />
+                                                            </svg>
+                                                            <span
+                                                                class="absolute inset-0 flex items-center justify-center text-xl font-bold text-ink"
+                                                                data-count="48">48</span>
+                                                        </div>
+                                                        <span class="text-[9px] font-bold text-ink mt-1">Total de
+                                                            Cirurgias</span>
+                                                    </div>
+                                                    <div class="flex flex-col items-center">
+                                                        <div class="text-orange font-bold"><span class="text-2xl"
+                                                                data-count="1.2" data-decimals="1">1.2</span><span
+                                                                class="text-[9px] text-muted"> /cirurgias</span></div>
+                                                        <span class="text-[9px] font-bold text-ink mt-1">Média
+                                                            Semanal</span>
+                                                    </div>
+                                                </div>
+                                                <div class="grid grid-cols-2 gap-2 mt-3">
+                                                    <div class="ui-tile">
+                                                        <div class="text-[11px] font-bold text-ink">Cirurgião</div>
+                                                        <div class="ui-row"><span>Principal:</span><b>18</b></div>
+                                                        <div class="ui-row"><span>Ajudante:</span><b>30</b></div>
+                                                    </div>
+                                                    <div class="ui-tile">
+                                                        <div class="text-[11px] font-bold text-ink">Bloco</div>
+                                                        <div class="ui-row"><span>Central:</span><b>41</b></div>
+                                                        <div class="ui-row"><span>Ambulatório:</span><b>7</b></div>
+                                                    </div>
+                                                    <div class="ui-tile">
+                                                        <div class="text-[11px] font-bold text-ink">Contexto</div>
+                                                        <div class="ui-row"><span>Eletivo:</span><b>36</b></div>
+                                                        <div class="ui-row"><span>Urgente:</span><b>12</b></div>
+                                                    </div>
+                                                    <div class="ui-tile">
+                                                        <div class="text-[11px] font-bold text-ink">Género</div>
+                                                        <div class="ui-row"><span>Homem:</span><b>27</b></div>
+                                                        <div class="ui-row"><span>Mulher:</span><b>21</b></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Pequenas Cirurgias -->
+                                            <div class="ui-card" data-reveal style="--d:1150ms">
+                                                <div class="flex items-center justify-between mb-2.5">
+                                                    <span class="ui-title">Pequenas Cirurgias - 2026</span>
+                                                    <span class="ui-badge bg-blue/10 text-blue">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                            stroke-width="1.8" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="m7.848 8.25 1.536.887M7.848 8.25a3 3 0 1 1-5.196-3 3 3 0 0 1 5.196 3Zm1.536.887a2.165 2.165 0 0 1 1.083 1.839c.005.351.054.695.14 1.024M9.384 9.137l2.077 1.199M7.848 15.75l1.536-.887m-1.536.887a3 3 0 1 1-5.196 3 3 3 0 0 1 5.196-3Zm1.536-.887a2.165 2.165 0 0 0 1.083-1.838c.005-.352.054-.695.14-1.025m-1.223 2.863 2.077-1.199m0-3.328a4.323 4.323 0 0 1 2.068-1.379l5.325-1.628a4.5 4.5 0 0 1 2.48-.044l.803.215-7.794 4.5m-2.882-1.664A4.33 4.33 0 0 0 10.607 12m3.736 0 7.794 4.5-.802.215a4.5 4.5 0 0 1-2.48-.043l-5.326-1.629a4.324 4.324 0 0 1-2.068-1.379M14.343 12l-2.882 1.664" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                <div class="grid grid-cols-2 gap-2.5">
+                                                    <div class="ui-tile text-center">
+                                                        <div class="text-2xl font-bold text-blue py-1">9</div>
+                                                        <div
+                                                            class="flex justify-center gap-1.5 whitespace-nowrap text-[8px] font-semibold text-muted">
+                                                            <span>Principal: <b class="text-pill1-text">6</b></span>
+                                                            <span>Ajudante: <b class="text-pill2-text">3</b></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ui-tile text-center">
+                                                        <div class="text-2xl font-bold text-blue-light py-1">+2</div>
+                                                        <div class="text-[9px] font-semibold text-muted">Variação
+                                                            semanal</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Floating tab bar (app/home/_layout.tsx) -->
+                                        <div class="tabbar">
+                                            <div class="tab is-active">
+                                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path
+                                                        d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
+                                                    <path
+                                                        d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
+                                                </svg>
+                                                Home
+                                            </div>
+                                            <div class="tab">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    stroke-width="1.6" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                                </svg>
+                                                Cirurgias
+                                            </div>
+                                            <div>
+                                                <div class="fab">
+                                                    <svg class="w-7 h-7" fill="none" stroke="currentColor"
+                                                        stroke-width="2.2" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M12 4.5v15m7.5-7.5h-15" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="tab">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    stroke-width="1.6" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                                                </svg>
+                                                Agenda
+                                            </div>
+                                            <div class="tab">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    stroke-width="1.6" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28ZM15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                                </svg>
+                                                Conta
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Wave Separator 1 -->
-        <div class="w-full mt-10 md:mt-20 overflow-hidden line-height-0">
-            <svg viewBox="0 0 1440 120" class="w-full h-auto fill-slate-50 block" preserveAspectRatio="none">
+        <div class="w-full mt-10 md:mt-16 overflow-hidden leading-0">
+            <svg viewBox="0 0 1440 120" class="w-full h-auto fill-app-bg block" preserveAspectRatio="none">
                 <path
                     d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z">
                 </path>
@@ -187,22 +1146,106 @@
         </div>
 
         <!-- Para Internos Section -->
-        <section id="internos" class="bg-slate-50 py-20 lg:py-32 relative overflow-hidden">
+        <section id="internos" class="bg-app-bg py-20 lg:py-28 relative overflow-hidden">
+            <div class="blob w-[600px] h-[600px] bg-pill2-bg/60 top-1/4 -right-60"></div>
+
             <div
                 class="max-w-7xl mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-24 relative z-10">
-                <!-- Image -->
+                <!-- Visual: Objetivos por Cirurgia card + mascot -->
                 <div class="w-full lg:w-1/2 relative flex justify-center lg:justify-start">
-                    <div
-                        class="absolute inset-0 bg-linear-to-bl from-teal-100 to-white rounded-[4rem] transform -rotate-3 scale-105 -z-10">
+                    <div class="relative w-full max-w-md sm:max-w-xl pb-44 sm:pb-0 sm:pr-44">
+                        <div class="ui-card p-5! rounded-3xl! shadow-2xl! shadow-[#014763]/10 relative z-10"
+                            data-reveal="left">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-base font-bold text-ink">Progresso Atual</span>
+                                <span class="ui-badge bg-orange/10 text-orange">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-5 mb-6">
+                                <!-- 130/180 = 72% (C = 2π·26 ≈ 163.4) -->
+                                <div class="relative w-24 h-24 flex-none">
+                                    <svg viewBox="0 0 64 64" class="w-full h-full">
+                                        <circle cx="32" cy="32" r="26" fill="none" stroke="#f1f6fa"
+                                            stroke-width="7" />
+                                        <circle class="ring-seg" cx="32" cy="32" r="26" fill="none" stroke="#F87F4B"
+                                            stroke-width="7" stroke-linecap="round" stroke-dasharray="117.6 163.4"
+                                            style="--len:117.6" transform="rotate(-90 32 32)" />
+                                    </svg>
+                                    <span
+                                        class="absolute inset-0 flex items-center justify-center text-xl font-black text-ink"><span
+                                            data-count="72">72</span>%</span>
+                                </div>
+                                <div class="ui-tile flex-1 text-center py-3!">
+                                    <div class="text-orange font-bold"><span class="text-3xl"
+                                            data-count="130">130</span><span class="text-base">/180</span></div>
+                                    <div class="text-xs font-semibold text-muted mt-1">Cirurgias</div>
+                                </div>
+                            </div>
+
+                            <div class="text-base font-bold text-ink mb-3">Objetivos por Cirurgia</div>
+                            <div class="space-y-3.5">
+                                <div>
+                                    <div class="flex justify-between text-sm font-semibold mb-1.5">
+                                        <span class="text-ink">Herniorrafias / Plastias</span>
+                                        <span class="text-muted"><b class="text-orange">52</b>/75</span>
+                                    </div>
+                                    <div class="h-2 rounded-full bg-surface-variant overflow-hidden">
+                                        <div class="bar-fill h-full rounded-full bg-orange" style="width:69%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm font-semibold mb-1.5">
+                                        <span class="text-ink">Apendicectomias</span>
+                                        <span class="text-muted"><b class="text-orange">41</b>/60</span>
+                                    </div>
+                                    <div class="h-2 rounded-full bg-surface-variant overflow-hidden">
+                                        <div class="bar-fill h-full rounded-full bg-orange"
+                                            style="width:68%;--d:450ms"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm font-semibold mb-1.5">
+                                        <span class="text-ink flex items-center gap-1.5">Colecistectomias
+                                            <svg class="w-4 h-4 text-success" fill="none" stroke="currentColor"
+                                                stroke-width="3" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="m4.5 12.75 6 6 9-13.5" />
+                                            </svg></span>
+                                        <span class="text-muted"><b class="text-success">25</b>/25</span>
+                                    </div>
+                                    <div class="h-2 rounded-full bg-surface-variant overflow-hidden">
+                                        <div class="bar-fill h-full rounded-full bg-success"
+                                            style="width:100%;--d:600ms"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm font-semibold mb-1.5">
+                                        <span class="text-ink">Cirurgia Anal / Perianal</span>
+                                        <span class="text-muted"><b class="text-orange">12</b>/20</span>
+                                    </div>
+                                    <div class="h-2 rounded-full bg-surface-variant overflow-hidden">
+                                        <div class="bar-fill h-full rounded-full bg-orange"
+                                            style="width:60%;--d:750ms"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <img src="./assets/2-full.png" alt="Internato Cirúrgico" data-reveal="scale"
+                            style="--d:400ms"
+                            class="absolute bottom-0 right-2 sm:-bottom-6 sm:right-0 w-40 sm:w-48 z-20 pointer-events-none">
                     </div>
-                    <img src="./assets/2-full.png" alt="Currículo Cirúrgico"
-                        class="relative z-10 w-full max-w-sm lg:max-w-md rounded-[2.5rem] float-animation-reverse object-cover">
                 </div>
 
                 <!-- Text -->
                 <div class="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
-                    <div
-                        class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-teal-100 text-teal-600 mb-6 shadow-sm">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-pill2-bg text-pill2-text mb-6 shadow-sm"
+                        data-reveal>
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -210,25 +1253,31 @@
                             </path>
                         </svg>
                     </div>
-                    <h2 class="text-4xl lg:text-5xl font-black text-teal-600 mb-6 leading-[1.15] tracking-tight">
-                        Para internos
+                    <span class="text-sm font-black uppercase tracking-[0.2em] text-pill2-text mb-3" data-reveal
+                        style="--d:80ms">Para internos</span>
+                    <h2 class="text-4xl lg:text-5xl font-black text-navy mb-6 leading-[1.15] tracking-tight"
+                        data-reveal style="--d:150ms">
+                        Registo pormenorizado, <br>
+                        <span class="text-pill2-text">sem perderes tempo.</span>
                     </h2>
-                    <p class="text-xl text-slate-600 mb-8 leading-relaxed font-semibold">
-                        Compreendemos que, apesar do cirurgião especialista não estar abrangido por objetivos fixos, é
-                        também alvo de avaliações e carece de um registo atualizado das intervenções cirúrgicas por ele
-                        realizadas.
-
+                    <p class="text-xl text-slate-600 mb-8 leading-relaxed font-semibold" data-reveal
+                        style="--d:250ms">
+                        Sabemos que o percurso do teu internato cirúrgico é pautado por desafios diários, exigindo uma
+                        grande conciliação e organização pessoais. O registo das tuas intervenções é crucial para a tua
+                        correta avaliação curricular, mas sabemos que devido ao volume de trabalho, esta é uma tarefa
+                        que muitas vezes deixas em segundo plano.
                     </p>
-                    <p class="text-lg text-slate-500 leading-relaxed font-medium">
-                        Ao registar as cirurgias, os especialistas podem facilmente consultar o seu histórico, verificar
-                        a sua casuística e manter o controlo total dos seus registos cirúrgicos.
+                    <p class="text-lg text-slate-500 leading-relaxed font-medium" data-reveal style="--d:350ms">
+                        Ao registares as cirurgias na <strong class="text-navy">ScalpelAid</strong>, podes facilmente
+                        consultar a tua casuística, manter o controlo total das tuas metas e objetivos e otimizar o teu
+                        tempo.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Wave Separator 2 text-slate-50 to text-white -->
-        <div class="w-full bg-slate-50 line-height-0 overflow-hidden block">
+        <!-- Wave Separator 2 -->
+        <div class="w-full bg-app-bg leading-0 overflow-hidden block">
             <svg viewBox="0 0 1440 120" class="w-full h-auto fill-white block" preserveAspectRatio="none">
                 <path
                     d="M0,32L80,48C160,64,320,96,480,101.3C640,107,800,85,960,69.3C1120,53,1280,43,1360,37.3L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z">
@@ -237,12 +1286,14 @@
         </div>
 
         <!-- Para Especialistas Section -->
-        <section id="especialistas" class="py-20 lg:py-32 relative overflow-hidden bg-white">
+        <section id="especialistas" class="py-20 lg:py-28 relative bg-white">
+            <div class="blob w-[600px] h-[600px] bg-blue-light/15 top-1/4 -left-60"></div>
+
             <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 lg:gap-24 relative z-10">
                 <!-- Text -->
                 <div class="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
-                    <div
-                        class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-100 text-indigo-600 mb-6 shadow-sm">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue/10 text-blue mb-6 shadow-sm"
+                        data-reveal>
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -250,35 +1301,480 @@
                             </path>
                         </svg>
                     </div>
-                    <h2 class="text-4xl lg:text-5xl font-black text-indigo-600 mb-6 leading-[1.15] tracking-tight">
-                        Para Especialistas
+                    <span class="text-sm font-black uppercase tracking-[0.2em] text-blue mb-3" data-reveal
+                        style="--d:80ms">Para especialistas</span>
+                    <h2 class="text-4xl lg:text-5xl font-black text-navy mb-6 leading-[1.15] tracking-tight"
+                        data-reveal style="--d:150ms">
+                        Histórico cirúrgico <br>
+                        <span class="text-blue">sempre atualizado.</span>
                     </h2>
-                    <p class="text-xl text-slate-600 mb-8 leading-relaxed font-semibold">
+                    <p class="text-xl text-slate-600 mb-8 leading-relaxed font-semibold" data-reveal
+                        style="--d:250ms">
                         Compreendemos que, mesmo como especialista, careces de um registo atualizado das tuas
                         intervenções cirúrgicas.
                     </p>
-                    <p class="text-lg text-slate-500 leading-relaxed font-medium">
-                        Ao registares as tuas cirurgias, podes facilmente consultar o teu histórico, verificar
-                        a tua casuística e manter o controlo total dos teus registos através de análises
-                        visuais claras e imediatas.
+                    <p class="text-lg text-slate-500 leading-relaxed font-medium" data-reveal style="--d:350ms">
+                        Ao registares as tuas cirurgias, podes facilmente consultar o teu histórico, verificar a tua
+                        casuística e manter o controlo total dos teus registos através de análises visuais claras e
+                        imediatas.
                     </p>
                 </div>
 
-                <!-- Image -->
+                <!-- Visual: surgery history + chart + mascot -->
                 <div class="w-full lg:w-1/2 relative flex justify-center lg:justify-end">
-                    <div
-                        class="absolute inset-0 bg-linear-to-tr from-indigo-100 to-white rounded-[4rem] transform rotate-3 scale-105 -z-10">
+                    <div class="relative w-full max-w-md sm:max-w-xl pb-44 sm:pb-0 sm:pl-44">
+                        <div class="bg-app-bg rounded-3xl p-4 sm:p-5 shadow-2xl shadow-[#014763]/15 relative z-10"
+                            data-reveal="right">
+                            <div class="text-xl font-semibold text-blue px-1 mb-3">As Minhas Cirurgias</div>
+                            <div class="space-y-2.5">
+                                <div class="ui-item" data-reveal style="--d:200ms">
+                                    <div class="stripe"></div>
+                                    <div class="flex-1 p-3">
+                                        <div class="flex items-center justify-between mb-1.5">
+                                            <span class="text-sm font-bold text-ink">Colectomia direita</span>
+                                            <span class="ui-pill">Principal</span>
+                                        </div>
+                                        <div class="flex justify-between text-xs font-semibold text-ink/70">
+                                            <span>Homem - 67 anos</span><span>20/10/2026</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui-item" data-reveal style="--d:320ms">
+                                    <div class="stripe"></div>
+                                    <div class="flex-1 p-3">
+                                        <div class="flex items-center justify-between mb-1.5">
+                                            <span class="text-sm font-bold text-ink">Tiroidectomia total</span>
+                                            <span class="ui-pill is-ajudante">Ajudante</span>
+                                        </div>
+                                        <div class="flex justify-between text-xs font-semibold text-ink/70">
+                                            <span>Mulher - 45 anos</span><span>17/10/2026</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui-item" data-reveal style="--d:440ms">
+                                    <div class="stripe is-small"></div>
+                                    <div class="flex-1 p-3">
+                                        <div class="flex items-center justify-between mb-1.5">
+                                            <span class="text-sm font-bold text-ink">Peq. Cirurgia</span>
+                                            <span class="ui-pill">Principal</span>
+                                        </div>
+                                        <div class="flex justify-between text-xs font-semibold text-ink/70">
+                                            <span>Homem - 32 anos</span><span>15/10/2026</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Monthly chart -->
+                            <div class="ui-card mt-3 p-4!" data-reveal style="--d:550ms">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-sm font-bold text-ink">Resumo do Ano - 2026</span>
+                                    <span class="text-xs font-bold text-success flex items-center gap-1">
+                                        <span>+<span data-count="24">24</span>%</span>
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="flex items-end justify-between gap-2 h-24">
+                                    <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                                        <div class="col-fill w-full rounded-t-md bg-blue-light/60"
+                                            style="height:45%;--d:700ms"></div>
+                                        <span class="text-[10px] font-bold text-muted">Mai</span>
+                                    </div>
+                                    <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                                        <div class="col-fill w-full rounded-t-md bg-blue-light/60"
+                                            style="height:62%;--d:780ms"></div>
+                                        <span class="text-[10px] font-bold text-muted">Jun</span>
+                                    </div>
+                                    <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                                        <div class="col-fill w-full rounded-t-md bg-blue-light/60"
+                                            style="height:38%;--d:860ms"></div>
+                                        <span class="text-[10px] font-bold text-muted">Jul</span>
+                                    </div>
+                                    <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                                        <div class="col-fill w-full rounded-t-md bg-blue-light/60"
+                                            style="height:55%;--d:940ms"></div>
+                                        <span class="text-[10px] font-bold text-muted">Ago</span>
+                                    </div>
+                                    <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                                        <div class="col-fill w-full rounded-t-md bg-blue-light/60"
+                                            style="height:70%;--d:1020ms"></div>
+                                        <span class="text-[10px] font-bold text-muted">Set</span>
+                                    </div>
+                                    <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                                        <div class="col-fill w-full rounded-t-md bg-blue"
+                                            style="height:85%;--d:1100ms"></div>
+                                        <span class="text-[10px] font-bold text-blue">Out</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <img src="./assets/3-full.png" alt="Para Especialistas" data-reveal="scale"
+                            style="--d:400ms"
+                            class="absolute bottom-0 left-2 sm:-bottom-6 sm:left-0 w-40 sm:w-48 z-20 pointer-events-none">
                     </div>
-                    <img src="./assets/3-full.png" alt="Para Especialistas"
-                        class="relative z-10 w-full max-w-sm lg:max-w-md rounded-[2.5rem] float-animation object-cover">
                 </div>
             </div>
         </section>
 
+        <!-- Wave Separator (white to app background) -->
+        <div class="w-full bg-white leading-0 overflow-hidden block mt-10">
+            <svg viewBox="0 0 1440 120" class="w-full h-auto fill-app-bg block" preserveAspectRatio="none">
+                <path
+                    d="M0,32L80,48C160,64,320,96,480,101.3C640,107,800,85,960,69.3C1120,53,1280,43,1360,37.3L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z">
+                </path>
+            </svg>
+        </div>
+
+        <!-- Funcionalidades Section -->
+        <section id="funcionalidades" class="bg-app-bg py-20 lg:py-28 relative overflow-hidden">
+            <div class="blob w-[520px] h-[520px] bg-orange/15 top-1/4 -left-60"></div>
+            <div class="blob w-[520px] h-[520px] bg-blue-light/20 top-1/2 -right-60" style="animation-delay:-9s"></div>
+
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <!-- Heading -->
+                <div class="max-w-3xl mx-auto text-center mb-14 lg:mb-20">
+                    <span class="inline-block text-sm font-black uppercase tracking-[0.2em] text-orange mb-3"
+                        data-reveal>Funcionalidades</span>
+                    <h2 class="text-4xl lg:text-5xl font-black text-navy mb-6 leading-[1.15] tracking-tight" data-reveal
+                        style="--d:100ms">
+                        Tudo o que precisas, <br>
+                        <span class="shimmer-text">num só lugar.</span>
+                    </h2>
+                    <p class="text-xl text-slate-500 leading-relaxed font-semibold" data-reveal style="--d:200ms">
+                        Para além do registo das cirurgias, a ScalpelAid acompanha-te no dia-a-dia com ferramentas
+                        pensadas para organizar, partilhar e analisar a tua atividade cirúrgica.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+
+                    <!-- Feature: Calendário -->
+                    <div data-reveal style="--d:0ms">
+                    <article class="feature-card h-full">
+                        <div class="feature-screen" id="calendar-demo">
+                            <div class="flex items-center gap-2 mb-3">
+                                <svg class="w-5 h-5 text-blue" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                                </svg>
+                                <span class="text-lg font-semibold text-blue">Agenda</span>
+                            </div>
+                            <div class="ui-card p-3!">
+                                <div class="flex items-center justify-between px-1 mb-2">
+                                    <svg class="w-4 h-4 text-orange" fill="none" stroke="currentColor"
+                                        stroke-width="2.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15.75 19.5 8.25 12l7.5-7.5" />
+                                    </svg>
+                                    <span class="text-[13px] font-bold text-ink">Outubro 2026</span>
+                                    <svg class="w-4 h-4 text-orange" fill="none" stroke="currentColor"
+                                        stroke-width="2.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </div>
+                                <div class="cal-grid text-[9px] font-bold text-muted mb-1">
+                                    <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+                                </div>
+                                <!-- October 2026 starts on a Thursday -->
+                                <div class="cal-grid">
+                                    <span></span><span></span><span></span><span></span>
+                                    <span class="cal-day">1</span><button class="cal-day is-marked" data-day="2">2</button><span class="cal-day">3</span>
+                                    <span class="cal-day">4</span><span class="cal-day">5</span><button class="cal-day is-marked" data-day="6">6</button><span class="cal-day">7</span><span class="cal-day">8</span><button class="cal-day is-marked" data-day="9">9</button><span class="cal-day">10</span>
+                                    <span class="cal-day">11</span><span class="cal-day">12</span><button class="cal-day is-marked" data-day="13">13</button><span class="cal-day">14</span><button class="cal-day is-marked" data-day="15">15</button><span class="cal-day">16</span><button class="cal-day is-marked" data-day="17">17</button>
+                                    <span class="cal-day">18</span><span class="cal-day">19</span><button class="cal-day is-marked" data-day="20">20</button><button class="cal-day is-marked is-today is-selected" data-day="21">21</button><span class="cal-day">22</span><span class="cal-day">23</span><span class="cal-day">24</span>
+                                    <span class="cal-day">25</span><span class="cal-day">26</span><span class="cal-day">27</span><span class="cal-day">28</span><span class="cal-day">29</span><span class="cal-day">30</span><span class="cal-day">31</span>
+                                </div>
+                            </div>
+                            <!-- Surgery of the selected day -->
+                            <div class="ui-item mt-3 cal-entry is-in" id="cal-entry">
+                                <div class="stripe"></div>
+                                <div class="flex-1 p-3">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <span class="text-[13px] font-bold text-ink" data-field="name">Colecistectomia</span>
+                                        <span class="ui-pill" data-field="role">Principal</span>
+                                    </div>
+                                    <div class="flex justify-between text-[11px] font-semibold text-ink/70">
+                                        <span data-field="patient">Mulher - 54 anos</span>
+                                        <span data-field="date">21/10/2026</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-body">
+                            <span class="feature-icon bg-orange/10 text-orange">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                                </svg>
+                            </span>
+                            <h3 class="text-2xl font-black text-navy mb-3 tracking-tight">Calendário</h3>
+                            <p class="text-slate-500 font-semibold leading-relaxed">
+                                Consulta as tuas cirurgias dia a dia na Agenda. Os dias com intervenções ficam
+                                assinalados e basta um toque para reveres o que fizeste.
+                            </p>
+                        </div>
+                    </article>
+                    </div>
+
+                    <!-- Feature: Importação e exportação -->
+                    <div data-reveal style="--d:150ms">
+                    <article class="feature-card h-full">
+                        <div class="feature-screen" id="export-demo">
+                            <div class="flex items-center gap-1.5 mb-1">
+                                <svg class="w-5 h-5 text-orange" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 19.5 8.25 12l7.5-7.5" />
+                                </svg>
+                                <span class="text-base font-bold text-ink">Exportar Cirurgias</span>
+                            </div>
+                            <p class="text-[11px] font-semibold text-muted mb-3">Selecione o ano que pretende exportar
+                            </p>
+
+                            <div class="year-card">
+                                <div>
+                                    <div class="text-xl font-bold text-ink leading-tight">2026</div>
+                                    <div class="flex items-center gap-1.5 mt-1">
+                                        <span class="count-badge bg-orange/15 text-orange">
+                                            <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor"
+                                                stroke-width="2.5" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                            </svg>48</span>
+                                        <span class="count-badge bg-blue/15 text-blue">
+                                            <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor"
+                                                stroke-width="2.5" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M7.848 8.25a3 3 0 1 1-5.196-3 3 3 0 0 1 5.196 3Zm0 7.5a3 3 0 1 1-5.196 3 3 3 0 0 1 5.196-3ZM9.384 9.137 21 16.5M9.384 14.863 21 7.5" />
+                                            </svg>9</span>
+                                        <span class="text-[10px] font-semibold text-muted">57 total</span>
+                                    </div>
+                                </div>
+                                <span class="export-btn" id="export-btn">
+                                    <span class="state-idle flex items-center gap-1.5">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                        </svg>
+                                        Exportar
+                                    </span>
+                                    <span class="state-busy spinner"></span>
+                                    <span class="state-done">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m4.5 12.75 6 6 9-13.5" />
+                                        </svg>
+                                    </span>
+                                </span>
+                            </div>
+
+                            <!-- Generated file -->
+                            <div class="export-file">
+                                <span class="w-9 h-9 rounded-lg bg-success text-white flex items-center justify-center text-[9px] font-black flex-none">XLSX</span>
+                                <div class="min-w-0">
+                                    <div class="text-[12px] font-bold text-ink truncate">exportacao_2026.xlsx</div>
+                                    <div class="text-[10px] font-semibold text-muted truncate">Cirurgias · Pequenas
+                                        Cirurgias</div>
+                                </div>
+                            </div>
+
+                            <div class="year-card mt-2.5">
+                                <div>
+                                    <div class="text-xl font-bold text-ink leading-tight">2025</div>
+                                    <div class="flex items-center gap-1.5 mt-1">
+                                        <span class="count-badge bg-orange/15 text-orange">112</span>
+                                        <span class="count-badge bg-blue/15 text-blue">21</span>
+                                        <span class="text-[10px] font-semibold text-muted">133 total</span>
+                                    </div>
+                                </div>
+                                <span class="export-btn">
+                                    <span class="flex items-center gap-1.5">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                        </svg>
+                                        Exportar
+                                    </span>
+                                </span>
+                            </div>
+
+                            <!-- Settings row: past surgeries -->
+                            <div class="text-[11px] font-bold text-muted mt-4 mb-1.5 px-1">Cirurgias</div>
+                            <div class="ui-card p-3! flex items-center gap-2.5">
+                                <svg class="w-4 h-4 text-blue flex-none" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                </svg>
+                                <span class="flex-1 text-[13px] font-semibold text-ink">Editar Cirurgias Antigas</span>
+                                <svg class="w-3.5 h-3.5 text-ink" fill="none" stroke="currentColor" stroke-width="3"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="feature-body">
+                            <span class="feature-icon bg-blue/10 text-blue">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                                </svg>
+                            </span>
+                            <h3 class="text-2xl font-black text-navy mb-3 tracking-tight">Importação e exportação das
+                                cirurgias</h3>
+                            <p class="text-slate-500 font-semibold leading-relaxed">
+                                Exporta o teu registo de cada ano para Excel, pronto a anexar ao currículo. Adiciona
+                                também as cirurgias que já realizaste no passado, sem teres de as inserir uma a uma.
+                            </p>
+                        </div>
+                    </article>
+                    </div>
+
+                    <!-- Feature: Estatísticas Avançadas -->
+                    <div class="md:col-span-2 lg:col-span-1" data-reveal style="--d:300ms">
+                    <article class="feature-card h-full">
+                        <div class="feature-screen">
+                            <div class="ui-card p-3.5!">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="ui-title">Histórico de Cirurgias</span>
+                                    <span class="ui-badge bg-blue/10 text-blue">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+                                        </svg>
+                                    </span>
+                                </div>
+
+                                <!-- Principal vs Ajudante (C = 2π·30 ≈ 188.5) -->
+                                <div class="flex items-center gap-4 mb-4">
+                                    <div class="relative w-[92px] h-[92px] flex-none">
+                                        <svg viewBox="0 0 80 80" class="w-full h-full">
+                                            <circle cx="40" cy="40" r="30" fill="none" stroke="#f1f6fa"
+                                                stroke-width="11" />
+                                            <circle class="ring-seg" cx="40" cy="40" r="30" fill="none"
+                                                stroke="#F87F4B" stroke-width="11" stroke-dasharray="70.7 188.5"
+                                                style="--len:70.7;--d:500ms" transform="rotate(-90 40 40)" />
+                                            <circle class="ring-seg" cx="40" cy="40" r="30" fill="none"
+                                                stroke="#5a9acb" stroke-width="11" stroke-dasharray="117.8 188.5"
+                                                style="--len:117.8;--d:1200ms" transform="rotate(45 40 40)" />
+                                        </svg>
+                                        <span
+                                            class="absolute inset-0 flex items-center justify-center text-xl font-bold text-ink"
+                                            data-count="48">48</span>
+                                    </div>
+                                    <div class="flex-1 space-y-2.5">
+                                        <div>
+                                            <div class="flex justify-between text-[11px] font-bold mb-1">
+                                                <span class="flex items-center gap-1.5 text-ink"><i
+                                                        class="inline-block w-2 h-2 rounded-full bg-orange"></i>Principal</span>
+                                                <span class="text-orange">38%</span>
+                                            </div>
+                                            <div class="h-1.5 rounded-full bg-surface-variant overflow-hidden">
+                                                <div class="bar-fill h-full rounded-full bg-orange"
+                                                    style="width:38%;--d:600ms"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="flex justify-between text-[11px] font-bold mb-1">
+                                                <span class="flex items-center gap-1.5 text-ink"><i
+                                                        class="inline-block w-2 h-2 rounded-full bg-blue-light"></i>Ajudante</span>
+                                                <span class="text-blue-light">62%</span>
+                                            </div>
+                                            <div class="h-1.5 rounded-full bg-surface-variant overflow-hidden">
+                                                <div class="bar-fill h-full rounded-full bg-blue-light"
+                                                    style="width:62%;--d:800ms"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-[13px] font-bold text-ink mb-2">Ano 2026</div>
+                                <div class="grid grid-cols-2 gap-2 mb-3">
+                                    <div class="ui-tile text-center py-2.5!">
+                                        <div class="text-[10px] font-semibold text-muted">Cirurgias</div>
+                                        <div class="text-xl font-bold text-orange" data-count="48">48</div>
+                                        <div class="text-[9px] font-semibold text-muted whitespace-nowrap">Principal: <b
+                                                class="text-pill1-text">18</b> Ajudante: <b
+                                                class="text-pill2-text">30</b></div>
+                                    </div>
+                                    <div class="ui-tile text-center py-2.5!">
+                                        <div class="text-[10px] font-semibold text-muted">Peq. Cirurgias</div>
+                                        <div class="text-xl font-bold text-blue-light" data-count="9">9</div>
+                                        <div class="text-[9px] font-semibold text-muted whitespace-nowrap">Principal: <b
+                                                class="text-pill1-text">6</b> Ajudante: <b
+                                                class="text-pill2-text">3</b></div>
+                                    </div>
+                                </div>
+                                <div class="text-[13px] font-bold text-ink mb-2">Ano 2025</div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div class="ui-tile text-center py-2.5!">
+                                        <div class="text-[10px] font-semibold text-muted">Cirurgias</div>
+                                        <div class="text-xl font-bold text-orange" data-count="112">112</div>
+                                        <div class="text-[9px] font-semibold text-muted whitespace-nowrap">Principal: <b
+                                                class="text-pill1-text">41</b> Ajudante: <b
+                                                class="text-pill2-text">71</b></div>
+                                    </div>
+                                    <div class="ui-tile text-center py-2.5!">
+                                        <div class="text-[10px] font-semibold text-muted">Peq. Cirurgias</div>
+                                        <div class="text-xl font-bold text-blue-light" data-count="21">21</div>
+                                        <div class="text-[9px] font-semibold text-muted whitespace-nowrap">Principal: <b
+                                                class="text-pill1-text">15</b> Ajudante: <b
+                                                class="text-pill2-text">6</b></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-body">
+                            <span class="feature-icon bg-pill2-bg text-pill2-text">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
+                                </svg>
+                            </span>
+                            <h3 class="text-2xl font-black text-navy mb-3 tracking-tight">Estatísticas Avançadas</h3>
+                            <p class="text-slate-500 font-semibold leading-relaxed">
+                                Gráficos claros sobre a tua casuística: o papel de cirurgião principal ou ajudante, a
+                                evolução ao longo dos anos e o histórico completo das tuas cirurgias.
+                            </p>
+                        </div>
+                    </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wave Separator 3 -->
+        <div class="w-full bg-app-bg leading-0 overflow-hidden block">
+            <svg viewBox="0 0 1440 120" class="w-full h-auto fill-navy block" preserveAspectRatio="none">
+                <path
+                    d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z">
+                </path>
+            </svg>
+        </div>
+
         <!-- Bottom CTA -->
-        <section id="download" class="py-24 bg-slate-900 relative overflow-hidden mt-10">
+        <section id="download" class="pt-16 pb-28 bg-navy relative overflow-hidden">
+            <div class="blob w-[500px] h-[500px] bg-orange/25 top-1/4 -left-60"></div>
+            <div class="blob w-[500px] h-[500px] bg-blue/40 top-1/3 -right-60" style="animation-delay:-9s"></div>
             <!-- Bubbles pattern -->
-            <div class="absolute inset-0 opacity-[0.03]">
+            <div class="absolute inset-x-0 top-0 h-[calc(100%+100px)] opacity-[0.04] bubbles-drift">
                 <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <pattern id="bubbles" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
@@ -292,15 +1788,20 @@
             </div>
 
             <div class="max-w-4xl mx-auto px-6 relative z-10 text-center text-white">
-                <h2 class="text-4xl lg:text-6xl font-black mb-8 tracking-tight">A otimização que o teu <br> currículo
-                    necessita.</h2>
-                <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-medium">
+                <div class="inline-block mb-10" data-reveal="scale">
+                    <img src="./assets/icon.png" alt="ScalpelAid"
+                        class="w-24 h-24 rounded-[1.75rem] glow-pulse float-animation">
+                </div>
+                <h2 class="text-4xl lg:text-6xl font-black mb-8 tracking-tight" data-reveal style="--d:120ms">A
+                    otimização que o teu <br class="hidden sm:block"> <span class="shimmer-text">currículo necessita.</span></h2>
+                <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-medium" data-reveal style="--d:240ms">
                     Junta-te a vários cirurgiões que já gerem a sua casuística de forma eficiente. Disponível para iOS e
                     Android.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-5 justify-center">
-                    <a href="https://apps.apple.com/pt/app/scalpelaid/id6761445313" target="_blank"
-                        class="flex items-center justify-center gap-3 px-8 py-4 bg-white text-slate-900 rounded-2xl font-bold text-lg shadow-2xl transition-all hover:-translate-y-1 hover:shadow-white/20 active:scale-95">
+                    <a href="https://apps.apple.com/pt/app/scalpelaid/id6761445313" target="_blank" data-reveal
+                        style="--d:360ms"
+                        class="btn-glow flex items-center justify-center gap-3 px-8 py-4 bg-white text-navy rounded-2xl font-bold text-lg shadow-2xl hover:shadow-orange/30">
                         <svg class="w-6 h-6 fill-current" viewBox="0 0 384 512">
                             <path
                                 d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
@@ -308,16 +1809,13 @@
                         App Store
                     </a>
                     <a href="https://play.google.com/store/apps/details?id=com.tpmarques.ScalpelAid" target="_blank"
-                        class="flex items-center justify-center gap-3 px-8 py-4 bg-transparent border-2 border-slate-700 hover:border-slate-500 hover:bg-slate-800 text-white rounded-2xl font-bold text-lg transition-all hover:-translate-y-1 active:scale-95">
+                        data-reveal style="--d:460ms"
+                        class="btn-glow flex items-center justify-center gap-3 px-8 py-4 bg-white/5 border-2 border-slate-700 hover:border-orange hover:bg-white/10 text-white rounded-2xl font-bold text-lg">
                         <svg class="w-6 h-6 fill-current" viewBox="0 0 512 512">
                             <path
                                 d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z" />
                         </svg>
-                        <div class="flex flex-col items-center gap-2">
-                            <div>
-                                Google Play
-                            </div>
-                        </div>
+                        Google Play
                     </a>
                 </div>
             </div>
@@ -339,37 +1837,189 @@
         </div>
     </footer>
 
-    <!-- Script for header blur logic and mobile menu -->
+    <!-- Navbar, mobile menu, scroll reveals, counters and hero tilt -->
     <script>
         const navbar = document.getElementById('navbar');
+        const progress = document.getElementById('scroll-progress');
         const menuBtn = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const closeIcon = document.getElementById('close-icon');
         const mobileLinks = document.querySelectorAll('.mobile-link');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+        // Navbar shrink + scroll progress
+        let ticking = false;
+        function onScroll() {
+            const y = window.scrollY;
+            navbar.classList.toggle('py-2', y > 10);
+            navbar.classList.toggle('shadow-sm', y > 10);
+            navbar.classList.toggle('py-4', y <= 10);
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+            ticking = false;
+        }
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 10) {
-                navbar.classList.add('py-2', 'shadow-sm');
-                navbar.classList.remove('py-4');
-            } else {
-                navbar.classList.add('py-4');
-                navbar.classList.remove('py-2', 'shadow-sm');
+            if (!ticking) {
+                requestAnimationFrame(onScroll);
+                ticking = true;
             }
+        }, { passive: true });
+        onScroll();
+
+        // Mobile menu
+        function toggleMenu(force) {
+            const open = navbar.classList.toggle('menu-open', force);
+            menuBtn.setAttribute('aria-expanded', open);
+        }
+        menuBtn.addEventListener('click', () => toggleMenu());
+        mobileLinks.forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+        // Active nav link
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sectionObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                navLinks.forEach(link => {
+                    link.classList.toggle('is-active', link.getAttribute('href') === '#' + entry.target.id);
+                });
+            });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        ['missao', 'internos', 'especialistas', 'funcionalidades', 'download'].forEach(id => {
+            sectionObserver.observe(document.getElementById(id));
         });
 
-        function toggleMenu() {
-            mobileMenu.classList.toggle('hidden');
-            mobileMenu.classList.toggle('flex');
-            menuIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
-            document.body.classList.toggle('overflow-hidden');
+        // Count-up numbers
+        function countUp(el) {
+            const target = parseFloat(el.dataset.count);
+            const decimals = parseInt(el.dataset.decimals || '0', 10);
+            if (reduceMotion) {
+                el.textContent = target.toFixed(decimals);
+                return;
+            }
+            const duration = 1600;
+            const delay = parseInt(getComputedStyle(el.closest('[data-reveal]') || el).getPropertyValue('--d')) || 0;
+            const start = performance.now() + delay;
+            el.textContent = (0).toFixed(decimals);
+            function frame(now) {
+                const t = Math.min(Math.max((now - start) / duration, 0), 1);
+                const eased = 1 - Math.pow(1 - t, 3);
+                el.textContent = (target * eased).toFixed(decimals);
+                if (t < 1) requestAnimationFrame(frame);
+            }
+            requestAnimationFrame(frame);
         }
 
-        menuBtn.addEventListener('click', toggleMenu);
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', toggleMenu);
-        });
+        // Scroll reveal (also triggers counters inside the revealed element)
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                entry.target.querySelectorAll('[data-count]').forEach(el => {
+                    if (el.dataset.counted) return;
+                    el.dataset.counted = '1';
+                    countUp(el);
+                });
+                revealObserver.unobserve(entry.target);
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+
+        // Hero phone tilts with the mouse (desktop only)
+        const stage = document.getElementById('hero-stage');
+        const tilt = document.getElementById('phone-tilt');
+        if (!reduceMotion && window.matchMedia('(hover: hover) and (min-width: 1024px)').matches) {
+            stage.addEventListener('mousemove', e => {
+                const r = stage.getBoundingClientRect();
+                const x = (e.clientX - r.left) / r.width - 0.5;
+                const y = (e.clientY - r.top) / r.height - 0.5;
+                tilt.style.setProperty('--ry', `${x * 14}deg`);
+                tilt.style.setProperty('--rx', `${-y * 10}deg`);
+            });
+            stage.addEventListener('mouseleave', () => {
+                tilt.style.setProperty('--ry', '0deg');
+                tilt.style.setProperty('--rx', '0deg');
+            });
+        }
+
+        // Funcionalidades: demos only run while they are on screen
+        const demoObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                entry.target.dataset.inView = entry.isIntersecting ? '1' : '';
+                if (entry.isIntersecting && entry.target.onFirstView) {
+                    entry.target.onFirstView();
+                    entry.target.onFirstView = null;
+                }
+            });
+        }, { threshold: 0.4 });
+
+        // Calendar demo: cycles through the marked days, or shows the one clicked
+        const calendarDemo = document.getElementById('calendar-demo');
+        const calEntry = document.getElementById('cal-entry');
+        const calDays = calendarDemo.querySelectorAll('button.cal-day');
+        const calSurgeries = {
+            2: ['Hernioplastia inguinal', 'Principal', 'Homem - 58 anos'],
+            6: ['Apendicectomia', 'Ajudante', 'Mulher - 23 anos'],
+            9: ['Peq. Cirurgia', 'Principal', 'Mulher - 41 anos', true],
+            13: ['Colecistectomia', 'Ajudante', 'Homem - 49 anos'],
+            15: ['Peq. Cirurgia', 'Principal', 'Homem - 32 anos', true],
+            17: ['Tiroidectomia total', 'Ajudante', 'Mulher - 45 anos'],
+            20: ['Colectomia direita', 'Principal', 'Homem - 67 anos'],
+            21: ['Colecistectomia', 'Principal', 'Mulher - 54 anos'],
+        };
+        const calOrder = Object.keys(calSurgeries).map(Number);
+        let calIndex = calOrder.indexOf(21);
+        let calPausedUntil = 0;
+
+        function selectDay(day) {
+            const [name, role, patient, small] = calSurgeries[day];
+            calDays.forEach(btn => btn.classList.toggle('is-selected', btn.dataset.day === String(day)));
+            calEntry.classList.remove('is-in');
+            setTimeout(() => {
+                calEntry.querySelector('[data-field="name"]').textContent = name;
+                calEntry.querySelector('[data-field="role"]').textContent = role;
+                calEntry.querySelector('[data-field="role"]').classList.toggle('is-ajudante', role === 'Ajudante');
+                calEntry.querySelector('[data-field="patient"]').textContent = patient;
+                calEntry.querySelector('[data-field="date"]').textContent = `${String(day).padStart(2, '0')}/10/2026`;
+                calEntry.querySelector('.stripe').classList.toggle('is-small', !!small);
+                calEntry.classList.add('is-in');
+            }, reduceMotion ? 0 : 200);
+        }
+
+        calDays.forEach(btn => btn.addEventListener('click', () => {
+            const day = Number(btn.dataset.day);
+            calIndex = calOrder.indexOf(day);
+            calPausedUntil = Date.now() + 8000;
+            selectDay(day);
+        }));
+        demoObserver.observe(calendarDemo);
+        if (!reduceMotion) {
+            setInterval(() => {
+                if (!calendarDemo.dataset.inView || Date.now() < calPausedUntil) return;
+                calIndex = (calIndex + 1) % calOrder.length;
+                selectDay(calOrder[calIndex]);
+            }, 2600);
+        }
+
+        // Export demo: Exportar -> loading -> exportacao_2026.xlsx
+        const exportDemo = document.getElementById('export-demo');
+        let exportTimer;
+        function runExport() {
+            clearTimeout(exportTimer);
+            exportDemo.classList.remove('is-done');
+            exportDemo.classList.add('is-exporting');
+            exportTimer = setTimeout(() => {
+                exportDemo.classList.remove('is-exporting');
+                exportDemo.classList.add('is-done');
+            }, 1400);
+        }
+        document.getElementById('export-btn').addEventListener('click', runExport);
+        if (reduceMotion) {
+            exportDemo.classList.add('is-done');
+        } else {
+            exportDemo.onFirstView = () => setTimeout(runExport, 900);
+            demoObserver.observe(exportDemo);
+            setInterval(() => {
+                if (exportDemo.dataset.inView) runExport();
+            }, 7000);
+        }
     </script>
 </body>
 

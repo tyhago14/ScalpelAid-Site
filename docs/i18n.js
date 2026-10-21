@@ -15,7 +15,7 @@
 
         // ---------- index.html ----------
         'meta.title': 'ScalpelAid - Surgical management without complications',
-        'meta.description': 'Log your surgeries quickly and easily. Surgical CV, statistics and Excel export, for trainees and specialists. Available for iOS and Android.',
+        'meta.description': 'Log your surgeries quickly and easily. Surgical CV, statistics and Excel export, on iOS and Android.',
         'hero.title1': 'Surgical management',
         'hero.title2': 'without complications.',
         'hero.lead': 'ScalpelAid was created to simplify how you manage your surgical CV, making logging your procedures practical, fast and intuitive.',

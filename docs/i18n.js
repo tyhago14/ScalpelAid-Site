@@ -15,6 +15,7 @@
 
         // ---------- index.html ----------
         'meta.title': 'ScalpelAid - Surgical management without complications',
+        'meta.description': 'Log your surgeries quickly and easily. Surgical CV, statistics and Excel export, for trainees and specialists. Available for iOS and Android.',
         'hero.title1': 'Surgical management',
         'hero.title2': 'without complications.',
         'hero.lead': 'ScalpelAid was created to simplify how you manage your surgical CV, making logging your procedures practical, fast and intuitive.',
@@ -241,13 +242,21 @@
         apply();
     }
 
+    // Country by IP; tries the next service when one fails or is blocked (api.country.is is on EasyPrivacy)
+    const GEO_APIS = ['https://api.country.is/', 'https://get.geojs.io/v1/ip/country.json'];
+    function fetchCountry(urls) {
+        if (!urls.length) return Promise.reject(new Error('No geolocation service available'));
+        return fetch(urls[0], { signal: AbortSignal.timeout(4000), referrerPolicy: 'no-referrer' })
+            .then(res => res.json())
+            .then(({ country }) => country || Promise.reject(new Error('No country in response')))
+            .catch(() => fetchCountry(urls.slice(1)));
+    }
+
     // Ask for the visitor's country once per session, unless they already picked a language
     function detectCountry() {
         if (load('localStorage', 'lang') || load('sessionStorage', 'geoLang')) return;
-        fetch('https://api.country.is/', { signal: AbortSignal.timeout(4000) })
-            .then(res => res.json())
-            .then(({ country }) => {
-                if (!country) return;
+        fetchCountry(GEO_APIS)
+            .then(country => {
                 const geoLang = PT_COUNTRIES.includes(country) ? 'pt' : 'en';
                 save('sessionStorage', 'geoLang', geoLang);
                 if (!load('localStorage', 'lang')) setLang(geoLang);
